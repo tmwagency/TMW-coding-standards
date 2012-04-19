@@ -1,0 +1,436 @@
+Front-End Dev guidelines
+========================
+
+##Overview
+
+This document details the guidelines and standards adhered to by the Creative Technology department at TMW, and all web applications built
+should take these into consideration.  It is an evolving document and should be reviewed as and when required to keep up with changes in
+technology and best practice.
+
+These guidelines have been compiled looking at various previously written guidelines - credit goes to [Isobar](http://na.isobar.com/standards)
+and [CSS Wizardry](https://github.com/csswizardry/CSS-Guidelines/blob/master/CSS%20Guidelines.md) both of which have been used as foundations
+to build upon for this document.
+
+##Contents
+
+1. [General Guidelines](#section-1)
+2. [Browser Support](#section-2)
+3. [Markup]()
+
+
+<a name="section-1"></a>General Guidelines
+==========================================
+
+1. All front-end code should display clear separation of presentation, content, and behaviour.
+
+2. Markup should be well formed, semantically correct and generally valid.
+
+3. Javascript should progressively enhance the experience
+	- Use feature detection rather than browser sniffing (edge cases such as performance are acceptable)
+
+4. Gracefully degrade functionality when not present (e.g GPS, box-shadow, forms etc).
+
+
+##General Best Practice
+
+###Indentation
+
+For all code languages, indent code with tabs.  The default tab size should be set as 4.
+
+###Readability vs Compression
+
+We prefer readability over file-size savings when it comes to maintaining existing files. Plenty of whitespace is encouraged, along with ASCII art, where appropriate. There is no need for any developer to purposefully compress HTML or CSS, nor obfuscate JavaScript.
+
+We will use server-side or build processes to automatically minify and gzip all static client-side files, such as CSS and JavaScript.
+
+
+<a name="section-2"></a>Browser Support
+=======================================
+
+**Support browsers:**
+
+- Internet Explorer 7+
+- Firefox 3.6+
+- Google Chrome
+- Safari 5
+- Opera
+
+
+Base Templates
+==============
+
+We will be using a mashup of [Twitter Bootstrap](http://twitter.github.com/bootstrap/) and [H5BP](http://html5boilerplate.com/).  This is still being fleshed out and will be available on the [TMW github repo](https://github.com/organizations/tmwagency).
+
+There will also be a much stripped back version of this available for simpler template builds, also available on github.
+
+
+Markup
+======
+
+##HTML 5
+
+The HTML5 Doctype and HTML5 features will be used on projects when appropriate.
+
+To ensure HTML5 markup compatibility with older browsers use either:
+
+- [Modernizr](http://www.modernizr.com/) - consider bloat, use the build system to decrease size)
+- [HTML5shiv](http://code.google.com/p/html5shiv/) - no feature detection, simply ensures markup compatibility
+
+We will test our markup against the [W3C validator](http://validator.w3.org/), to ensure that the markup is well formed. 100% valid code is not a goal, but validation certainly helps to write more maintainable sites as well as debugging code. TMW does not guarantee markup is 100% valid, but instead assures the cross-browser experience is consistent.
+
+
+##General Markup Guidelines
+
+The following are general guidelines for structuring your HTML markup. Authors are reminded to always use markup which represents the semantics of the content in the document being created.
+
+- Use p elements for paragraph delimiters as opposed to multiple BR tags.
+- Make use of DL (definition lists) and BLOCKQUOTE, when appropriate.
+- Items in list form should always be housed in a UL, OL, or DL, never a set of DIVs or Ps.
+- Use label fields to label each form field, the for attribute should associate itself with the input field, so users can click the labels. cursor:pointer; on the label is wise, as well.
+- Do not use the size attribute on your input fields. The size attribute is relative to the font-size of the text inside the input. Instead use css width.
+- Place an html comment on some closing div tags to indicate what element you're closing. It will help when there is lots of nesting and indentation.
+- Use microformats and/or Microdata where appropriate, specifically hCard and adr.
+- Make use of THEAD, TBODY, and TH tags (and Scope attribute) when appropriate.
+- Always use title-case for headers and titles. Do not use all caps or all lowercase titles in markup, instead apply the CSS property text-transform:uppercase/lowercase.
+
+...and the most important rule
+
+- Tables **shouldn't ever** be used for page layout.
+
+##Quoting Attributes
+
+While the HTML5 specification defines quotes around attributes as optional for consistency with attributes that accept whitespace, all attributes should be quoted.
+
+
+##Character Encoding
+
+All markup should be delivered as UTF-8, as its the most friendly for internationalization. It should be designated in both the HTTP header and the head of the document.
+
+Setting the character set using <meta> tags.
+
+	<meta charset="utf-8">
+
+
+##Accessibility
+
+Consider ARIA integration for high accessibility sites
+
+
+CSS
+===
+
+##General Coding Principles
+
+- Add CSS through external files, minimizing the number of files, if possible. CSS should always be included in the HEAD of the document.
+- Use the LINK tag to include, never @import.
+- Ensure markup and style stays separate (some style classes are allowed, e.g imagereplace etc).  Only use style only markup if you have to (e.g extra wrapping elements), consider :before :after css pseudo elements if styles are not 100% necessary
+- Every time you write inline styles in your markup, a front-end developer somewhere dies - whether it's in a style tag or directly on the elements. Don't do it.
+
+
+##Syntax and formatting
+
+- Use multi-line CSS declarations. This helps with version control (diffing single line CSS is a nightmare). Group CSS declarations by type - so keep font related styling together, layout styling together etc - and ordered by relevance, not alphabetized.
+- Selectors should be (insert fight to the death over hyphens or underscores).
+- All CSS rules should have a trailing semi-colon.
+- Use shorthand when specifying multiple values, remember longhand can be shorter for single values.
+- Multi-attribute selectors should go on separate lines.
+- Don't qualify class or ID selectors
+		
+		// Bad
+		div.content {}
+
+		// Good
+		.content {}
+
+
+- 0 requires no units
+
+		// Good
+		.bar,
+		.foo[href="bar"] {
+			position: absolute;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			
+			padding: 10px 0 0 0;
+			margin: 10px 0;
+			
+			background: red;
+			border-radius: 10px;
+			-moz-border-radius: 10px;
+		}
+
+
+##Indenting
+
+For each level of markup nesting, indent your CSS to match.  For example:
+
+		nav {}
+			nav li {}
+				nav li a {}
+
+		.content {}
+			.content p {}
+
+
+##OOCSS
+
+When building components try and keep a DRY, OO frame of mind.
+
+Instead of building dozens of unique components, try and spot repeated design patterns and abstract them; build these skeletons as base 'objects' and then peg classes onto these to extend their styling for more unique circumstances.
+
+If you have to build a new component split it into structure and skin; build the structure of the component using very generic classes so that we can reuse that construct and then use more specific classes to skin it up and add design treatments.
+
+Read:
+- [The Nav Abstraction](http://csswizardry.com/2011/09/the-nav-abstraction/)
+
+
+##Typography
+
+font-face should be used for font replacement where possible - check that the font can be safely used in ttf format on the web in agreement with its licensing agreement.  Where this is an issue, look to use tools such as [TypeKit](https://typekit.com/) or [Fontdeck](http://fontdeck.com/)
+
+JavaScript replacement techniques should be avoided where possible, as they are painful, time-consuming and usually inaccurate.  Flash replacement techniques (such as Sifr) should never be used.
+
+Define [supporting font-size classes](http://csswizardry.com/2012/02/pragmatic-practical-font-sizing-in-css/), in conjuction with headers to avoid restyling header sizes.
+
+
+
+##Reset vs Normalisation
+
+There is no set preference to using a reset CSS file or using a normalisation technique, as long as consistency is applied throughout projects.
+
+If a reset is prefered, the [Eric Meyer reloaded reset](http://html5doctor.com/html-5-reset-stylesheet/) should be used.
+
+For normalisation, the excellent [normalise.css](http://necolas.github.com/normalize.css/) should be included.
+
+
+##Comments
+
+Comment as much as you can as often as you can. Where it might be useful, include a commented out piece of markup which can help put the current CSS into context.
+
+CSS will be minified before it hits live servers, so don't worry about excessive commenting bloating code - the benefits far outweigh any filesize worries.
+
+This is especially true for responsive layouts where percentage width/margin's have been worked out.  Always comment in the ratio so that the resulting % values mean something should someone else look at your code.  A random 6dp percentage will mean nothing to anyone else looking at your CSS.
+
+e.g.
+
+		width: 34.042553% /* 320 / 940 */
+
+
+##Specificity, IDs and classes
+
+CSS is designed to cascade, so make sure you understand [cascading and selector specificity](http://www.stuffandnonsense.co.uk/archives/css_specificity_wars.html) - it will enable you to write very terse and effective code.
+
+Use of IDs and classes effect specificity massively.  Only use IDs where deemed necessary, especially on larger builds - classes are much more modular and portable.  If you want to use an ID solely as a JavaScript hook, consider using the ID alongside a class for CSS styling.
+
+Name classes and IDs by the nature of *What it is* rather than what it looks like. A class of blueBoxLeft may seem relevant at the time, but should it's colour change, it becomes meaningless.  Naming in conjuction with a more OOCSS approach should eliminate this ambiguity.
+
+
+##Conditional Stylesheets
+
+IE stylesheets can, by and large, be totally avoided. The only time an IE stylesheet may be required is to circumvent blatant lack of support (e.g. PNG fixes).
+
+As a general rule, all layout and box-model rules can and will work without an IE stylesheet if you refactor and rework your CSS. This means we never want to see <!--[if IE 7]> element{ margin-left:-9px; } < ![endif]--> or other such CSS that is clearly using arbitrary styling to just 'make stuff work'.
+
+If IE specific styling is required as a last resort, look to utilise Paul Irish's [body/html class conditional for IE* targeting](http://paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/).
+
+
+##!important
+
+It is okay to use !important on helper classes only. To add !important preemptively is fine, e.g. .error{ color:red!important }, as you know you will always want this rule to take precedence.
+
+Using !important reactively, e.g. to get yourself out of nasty specificity situations, is not advised. Rework your CSS and try to combat these issues by refactoring your selectors. Keeping your selectors short and avoiding IDs will help out here massively.
+
+
+##Images
+
+Use CSS sprites when possible - [Sprite Cow](http://www.spritecow.com/) is a great tool for generating the CSS required for positioning.
+
+
+##Debugging
+
+If you run into a CSS problem take code away before you start adding more in a bid to fix it. The problem exists in CSS that is already written, more CSS isn't necessarily the right answer!
+
+It can be tempting to put an overflow:hidden; on something to hide the effects of a layout quirk, but overflow was probably never the problem; fix the problem, not its symptoms.
+
+
+##Preprocessors
+
+Use of a preprocessor should be used on a per project basis where it is deemed necessary.
+
+Where a preprocessor is used, we shall use [LESS](http://lesscss.org/).
+
+Be sure to know the ins-and-outs of excellent vanilla CSS and where a preprocessor can aid that, not hinder or undo it. Learn the downsides of preprocessors inside-out and then fuse the best aspects of the two with the bad bits of neither.
+	
+
+##Tools
+
+- [Procssor](http://procssor.com/) - formats untidy CSS into indented loveliness
+
+
+Javascript
+==========
+
+##Libraries
+
+We develop all of our new applications using a mix of native JavaScript and [jQuery](http://jquery.com/).
+
+
+##Plugins
+
+We maintain an active wiki detailing the JavaScript and jQuery plugins we use for common use cases such as form validation, carousels and lightboxes.  Any additions to this must first be added to the experimental list and then approved by at least 2 members of the team.
+
+All plugins should be added into the projects plugins.js and never included as a separate JS file, as it increases the number of page requests (page requests === bad).
+
+
+##General Coding Principles
+
+- 99% of JavaScript should be included in external JavaScript files and included at the END of the BODY tag.  The only exception to this rule is [Modernizr](http://modernizr.com/) which can be included at the end of the HEAD.
+- Feature detect, don't browser detect.  [Modernizr](http://modernizr.com/) is a great resource for doing this.
+- Name variables and functions logically and in camelCase.
+- Prefix jQuery collection variables with the dollar ($) character e.g $headerChildren
+- Class declarations should start with a capital letter.
+- Constants or configuration variables should be at the start of a class.
+- Global variables should be written in all caps - although avoid polluting the global namespace
+- Build using the object literal pattern e.g.
+
+		var BASENAME = {
+			init: function(){
+				this.$sections = $('#container section'),
+				this.$additionalTextNodes = $('section a > span')
+				this.createMarkup();
+			},
+			createMarkup: function(){
+				var $additionalTextNodes = this.$sections.remove();
+				&additionalTextNodes.css({
+					position: 'absolute',
+					top: this.style.left - $sections[0].style.width / 2
+				})
+			}
+		}
+		BASENAME.init();
+
+- Structure and formatting should follow the example below:
+
+		$(function(){
+			//globals here, in CAPS
+
+			var SiteSetup = {
+				animationSpeed: 100,
+
+				init : function () {
+					//fire off all other classes
+					if (LightBox.$lightbox.length > 0) {
+						LightBox.init();
+					}					
+				}
+			},
+			LightBox = {
+				$lightbox: $('.lightbox'),
+
+				init : function () {},
+				open : function () {},
+				close : function () {}
+			};
+
+			SiteSetup.init();
+		});
+
+- Documentation should follow [NaturalDocs](http://www.naturaldocs.org/documenting.html) structure.  As with all code, document as frequently as you can - the more detail the better.  At the very least, document each function you create.
+
+**Read**
+[The Essentials of Writing High Quality JavaScript](http://net.tutsplus.com/tutorials/javascript-ajax/the-essentials-of-writing-high-quality-javascript/)
+
+
+##Formatting and code sensibility
+
+- separate operators/comparators with spacing
+
+		// Good
+		if (foo && foo.bar && typeof foo.bar === 'object') {
+			foo.bar.call();
+		}
+	
+		// Terrible
+		if(foo&&foo.bar&&typeof foo.bar==='object'){
+			foo.bar.call();
+		}
+
+- Use braces for logic evaluations.  If evaluation execution is simple, keep non-braced logic on a single line e.g:
+	
+		// Good
+		if (i < 10) return true;
+
+		// Good
+		if(foo && foo.bar && foo.bar > 10) {
+			foo.baz = foo.bar - 100 * 2.7 + 'rad'
+		}
+	
+		// Bad
+		if(foo && foo.bar && foo.bar > 10)
+			foo.baz = foo.bar - 100 * 2.7 + 'rad'
+	
+		// Bad
+		if(i < 10)
+			return true;
+		
+		// Bad
+		if(i < 10)
+		{
+			return true;
+		}
+
+- Remap this to self when passing context
+- Always use === as a comparator (unless you really need flexible evaluations e.g comparison to null)
+- Always add a second radix param to parseInt() to prevent accidental octal issues
+- Never bother comparing variables to true/false
+- For large loops, either cache the length variable to prevent re-evaluation or use a reverse while loop
+- Don't create functions in loops (its slow, and stupid)
+- When creating functions with many parameters, pass in an object rather than listing numerous parameters.
+	- use $.extend if you are using jquery to extend a passed in object while providing defaults
+- If possible, avoid using bitwise operations unless they really help. If used, document them with comments
+
+		// inverting bits to ease comparison to -1
+		if (~foo.bar.indexOf('leetness')){
+			alert('w00t!')
+		}
+
+##jQuery
+
+- Always cache dom selection if you plan to re-use data
+- Use efficient query selectors, write for many browsers, don't assume document.querySelector()
+- Avoid using $.each for repeated or performance critical functionality, and instead use a for or reverse while loop (especially for large objects)
+- Use on() and off() handlers for events.  Everything else is now depreciated (live, delegate, bind)
+- When using simple html5 attribute data, simply use $selected.attr('data-foo') unless working with complex data types (where you can use $selected.data())
+
+
+##Debugging
+
+Learn how to use your browser tools properly as it will save you hours in debugging.
+
+If you're using alert() you're doing it wrong.  Use console.log(), or [Paul Irish's lightweight wrapper](http://paulirish.com/2009/log-a-lightweight-wrapper-for-consolelog/)
+
+
+##Resources
+
+1. Forms:
+	- Uniform
+2. jQuery Tools
+3. Ender.js
+4. Require.js
+
+This list will eventually go on a separate wiki detailing more specific plugin information.
+
+
+
+Accessibility
+-------------
+
+- [Accessibility Testing](http://wave.webaim.org/)
+
+
+Performance
+-----------
+
