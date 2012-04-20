@@ -14,8 +14,11 @@ to build upon for this document, and in some sections been directly quoted.
 ##Contents
 
 1. [General Guidelines](#section-1)
-	1. 1. [Indentation](#section-1-a)
-	1. 2. [Readability vs Compression](#section-1-b)
+	
+	i. [Indentation](#section-1-a)
+	
+	ii. [Readability vs Compression](#section-1-b)
+
 2. [Browser Support](#section-2)
 3. [Base Templates](#section-3)
 4. [Markup](#section-4)
@@ -29,7 +32,7 @@ to build upon for this document, and in some sections been directly quoted.
 	2. [Syntax and formatting](#section-5-b)
 	3. [Indenting](#section-5-c)
 	4. [OOCSS](#section-5-d)
-	v. [Typography](#section-5-e)
+	5. [Typography](#section-5-e)
 	vi. [Reset vs Normalisation](#section-5-f)
 	vii. [Comments](#section-5-g)
 	viii. [Specificity, IDs and classes](#section-5-h)
