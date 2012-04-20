@@ -9,45 +9,74 @@ technology and best practice.
 
 These guidelines have been compiled looking at various previously written guidelines - credit goes to [Isobar](http://na.isobar.com/standards)
 and [CSS Wizardry](https://github.com/csswizardry/CSS-Guidelines/blob/master/CSS%20Guidelines.md) both of which have been used as foundations
-to build upon for this document.
+to build upon for this document, and in some sections been directly quoted.
 
 ##Contents
 
 1. [General Guidelines](#section-1)
+	i. [Indentation](#section-1-a)
+	ii. [Readability vs Compression](#section-1-b)
 2. [Browser Support](#section-2)
-3. [Markup]()
+3. [Base Templates](#section-3)
+4. [Markup](#section-4)
+	i. [HTML5](#section-4-a)
+	ii. [General Markup Guidelines](#section-4-b)
+	iii. [Quoting Attributes](#section-4-c)
+	iv. [Character Encoding](#section-4-d)
+	v. [Accessibility](#section-4-e)
+5. [CSS](#section-5)
+	i. [General CSS Principles](#section-5-a)
+	ii. [Syntax and formatting](#section-5-b)
+	iii. [Indenting](#section-5-c)
+	iv. [OOCSS](#section-5-d)
+	v. [Typography](#section-5-e)
+	vi. [Reset vs Normalisation](#section-5-f)
+	vii. [Comments](#section-5-g)
+	viii. [Specificity, IDs and classes](#section-5-h)
+	ix. [Conditional Stylesheets](#section-5-i)
+	x. [!important](#section-5-j)
+	xi. [Images](#section-5-k)
+	xii. [Debugging](#section-5-l)
+	xiii. [Preprocessors](#section-5-m)
+	xiv. [Tools](#section-5-n)
+6. [JavaScript](#section-6)
+	i. [Libraries](#section-6-a)
+	ii. [Plugins](#section-6-b)
+	iii. [General JavaScript Principles](#section-6-c)
+	iv. [Formatting and code sensibility](#section-6-d)
+	v. [jQuery](#section-6-e)
+	vi. [Debugging](#section-6-f)
+	vii. [Resources](#section-6-g)
+7. [Accessibility](#section-7)
+8. [Performance and Optimisation](#section-8)
 
 
-<a name="section-1"></a>General Guidelines
-==========================================
+***
 
-1. All front-end code should display clear separation of presentation, content, and behaviour.
+<a name="section-1"></a> General Guidelines
+===========================================
 
-2. Markup should be well formed, semantically correct and generally valid.
-
-3. Javascript should progressively enhance the experience
+- All front-end code should display clear separation of presentation, content, and behaviour.
+- Markup should be well formed, semantically correct and generally valid.
+- JavaScript should progressively enhance the experience
 	- Use feature detection rather than browser sniffing (edge cases such as performance are acceptable)
+- Gracefully degrade functionality when not present (e.g GPS, box-shadow, forms etc).
 
-4. Gracefully degrade functionality when not present (e.g GPS, box-shadow, forms etc).
 
+##<a name="section-1-a"></a> Indentation
 
-##General Best Practice
+For all languages, indent your code with tabs.  The default tab size should be set as 4.
 
-###Indentation
+##<a name="section-1-b"></a> Readability vs Compression
 
-For all code languages, indent code with tabs.  The default tab size should be set as 4.
-
-###Readability vs Compression
-
-We prefer readability over file-size savings when it comes to maintaining existing files. Plenty of whitespace is encouraged, along with ASCII art, where appropriate. There is no need for any developer to purposefully compress HTML or CSS, nor obfuscate JavaScript.
+We encourage readability over file-size when it comes to maintaining existing files. Plenty of white-space is encouraged, along with ASCII art, where appropriate. There is no need for any developer to purposefully compress HTML or CSS, nor obfuscate JavaScript.
 
 We will use server-side or build processes to automatically minify and gzip all static client-side files, such as CSS and JavaScript.
 
+***
 
-<a name="section-2"></a>Browser Support
-=======================================
-
-**Support browsers:**
+<a name="section-2"></a> Browser Support
+========================================
 
 - Internet Explorer 7+
 - Firefox 3.6+
@@ -55,93 +84,108 @@ We will use server-side or build processes to automatically minify and gzip all 
 - Safari 5
 - Opera
 
+***
 
-Base Templates
-==============
+<a name="section-3"></a> Base Templates
+=======================================
 
 We will be using a mashup of [Twitter Bootstrap](http://twitter.github.com/bootstrap/) and [H5BP](http://html5boilerplate.com/).  This is still being fleshed out and will be available on the [TMW github repo](https://github.com/organizations/tmwagency).
 
-There will also be a much stripped back version of this available for simpler template builds, also available on github.
+There will also be a much stripped back version of this available for less involved template builds, also available on github.
 
+***
 
-Markup
-======
+<a name="section-4"></a> Markup
+===============================
 
-##HTML 5
+##<a name="section-4-a"></a> HTML5
 
 The HTML5 Doctype and HTML5 features will be used on projects when appropriate.
 
-To ensure HTML5 markup compatibility with older browsers use either:
+To ensure HTML5 markup compatibility with older browsers, use either:
 
-- [Modernizr](http://www.modernizr.com/) - consider bloat, use the build system to decrease size)
+- [Modernizr](http://www.modernizr.com/) - consider bloat, use the build generator to decrease its size
 - [HTML5shiv](http://code.google.com/p/html5shiv/) - no feature detection, simply ensures markup compatibility
 
 We will test our markup against the [W3C validator](http://validator.w3.org/), to ensure that the markup is well formed. 100% valid code is not a goal, but validation certainly helps to write more maintainable sites as well as debugging code. TMW does not guarantee markup is 100% valid, but instead assures the cross-browser experience is consistent.
 
 
-##General Markup Guidelines
+##<a name="section-4-b"></a> General Markup Guidelines
 
 The following are general guidelines for structuring your HTML markup. Authors are reminded to always use markup which represents the semantics of the content in the document being created.
 
-- Use p elements for paragraph delimiters as opposed to multiple BR tags.
-- Make use of DL (definition lists) and BLOCKQUOTE, when appropriate.
-- Items in list form should always be housed in a UL, OL, or DL, never a set of DIVs or Ps.
-- Use label fields to label each form field, the for attribute should associate itself with the input field, so users can click the labels. cursor:pointer; on the label is wise, as well.
-- Do not use the size attribute on your input fields. The size attribute is relative to the font-size of the text inside the input. Instead use css width.
-- Place an html comment on some closing div tags to indicate what element you're closing. It will help when there is lots of nesting and indentation.
-- Use microformats and/or Microdata where appropriate, specifically hCard and adr.
-- Make use of THEAD, TBODY, and TH tags (and Scope attribute) when appropriate.
-- Always use title-case for headers and titles. Do not use all caps or all lowercase titles in markup, instead apply the CSS property text-transform:uppercase/lowercase.
+- Use `<p>` elements for paragraph delimiters as opposed to multiple `<br />` tags.
+- Items in list form should always be housed in a `<ul>`, `<ol>`, or `<dl>`, never a set of `<div>`s or `<p>`s.
+- Place an HTML comment around DIV tags that contain a larger amount of markup to indicate the element you're closing. It will help when there is a lot of nesting and indentation. For example:
+	
+		<!-- Start of .contentWrap -->
+		<div class="contentWrap">
 
-...and the most important rule
+			//some markup goes here
+
+		</div> <!-- End of .contentWrap -->
+
+
+- Make use of `<thead>`, `<tbody>`, and `<th>` tags (and Scope attribute) when appropriate.
+- Make use of `<dl>` (definition lists) and `<blockquote>`, when appropriate.
+- Use `<label>` fields to label each form field.  The for attribute should associate itself with the input field, so users can click the labels and obtain focus.
+- Do not use the size attribute on your input fields. The size attribute is relative to the font-size of the text inside the input. Instead use CSS width.
+- Always use title-case for headers and titles. Do not use all caps or all lowercase titles in markup, instead apply the CSS property text-transform:uppercase/lowercase.
+- Use microformats and/or Microdata where appropriate, specifically hCard and adr.
+
+...and the single most important rule...
 
 - Tables **shouldn't ever** be used for page layout.
 
-##Quoting Attributes
+##<a name="section-4-c"></a> Quoting Attributes
 
 While the HTML5 specification defines quotes around attributes as optional for consistency with attributes that accept whitespace, all attributes should be quoted.
 
+	<a href="mylink.html" title="My Link Title" data-attribute="32">This is my Link</a>
 
-##Character Encoding
 
-All markup should be delivered as UTF-8, as its the most friendly for internationalization. It should be designated in both the HTTP header and the head of the document.
+##<a name="section-4-d"></a> Character Encoding
 
-Setting the character set using <meta> tags.
+All markup should be delivered as UTF-8, as it's the most friendly for internationalization. It should be designated in both the HTTP header and the head of the document.
+
+Setting the character set using `<meta>` tags.
 
 	<meta charset="utf-8">
 
 
-##Accessibility
+##<a name="section-4-e"></a> Accessibility
 
-Consider ARIA integration for high accessibility sites
+Consider ARIA integration for high accessibility sites.
+
+For our full guidelines on Accessibility, refer to the [Accessibility Guidelines](#section-7) section of this document.
+
+***
+
+<a name="section-5"></a> CSS
+============================
+
+##<a name="section-5-a"></a> General CSS Principles
+
+- Every time you write inline styles in your markup, a front-end developer somewhere dies - whether it's in a style tag or directly in the markup. Don't do it.
+- Add CSS through external files, minimizing the number of files, if possible. CSS should always be included in the `<head>` of the document.
+- Use the `<link>` tag to include, never `@import`.
+- Ensure markup and style stays separate (some style classes are allowed, e.g imageReplace etc).  Only use style only markup if you absolutely have to (e.g extra wrapping elements); consider `:before` and `:after` CSS pseudo-elements if styles are not 100% necessary.
 
 
-CSS
-===
+##<a name="section-5-b"></a> Syntax and formatting
 
-##General Coding Principles
-
-- Add CSS through external files, minimizing the number of files, if possible. CSS should always be included in the HEAD of the document.
-- Use the LINK tag to include, never @import.
-- Ensure markup and style stays separate (some style classes are allowed, e.g imagereplace etc).  Only use style only markup if you have to (e.g extra wrapping elements), consider :before :after css pseudo elements if styles are not 100% necessary
-- Every time you write inline styles in your markup, a front-end developer somewhere dies - whether it's in a style tag or directly on the elements. Don't do it.
-
-
-##Syntax and formatting
-
-- Use multi-line CSS declarations. This helps with version control (diffing single line CSS is a nightmare). Group CSS declarations by type - so keep font related styling together, layout styling together etc - and ordered by relevance, not alphabetized.
+- Use multi-line CSS declarations. This helps with version control (diffing single line CSS can be a nightmare). Group CSS declarations by type - keeping font related styling together, layout styling together etc - and ordered by relevance, not alphabetized.
 - Selectors should be (insert fight to the death over hyphens or underscores).
 - All CSS rules should have a trailing semi-colon.
-- Use shorthand when specifying multiple values, remember longhand can be shorter for single values.
+- Use shorthand when specifying multiple values.  Remember longhand can be shorter for single values.
 - Multi-attribute selectors should go on separate lines.
-- Don't qualify class or ID selectors
+- Don't over qualify class or ID selectors.  Leads to specificity issues further down the line.
 		
 		// Bad
 		div.content {}
 
 		// Good
 		.content {}
-
 
 - 0 requires no units
 
@@ -163,7 +207,7 @@ CSS
 		}
 
 
-##Indenting
+##<a name="section-5-c"></a> Indenting
 
 For each level of markup nesting, indent your CSS to match.  For example:
 
@@ -175,7 +219,7 @@ For each level of markup nesting, indent your CSS to match.  For example:
 			.content p {}
 
 
-##OOCSS
+##<a name="section-5-d"></a> OOCSS
 
 When building components try and keep a DRY, OO frame of mind.
 
@@ -187,113 +231,122 @@ Read:
 - [The Nav Abstraction](http://csswizardry.com/2011/09/the-nav-abstraction/)
 
 
-##Typography
+##<a name="section-5-e"></a> Typography
 
-font-face should be used for font replacement where possible - check that the font can be safely used in ttf format on the web in agreement with its licensing agreement.  Where this is an issue, look to use tools such as [TypeKit](https://typekit.com/) or [Fontdeck](http://fontdeck.com/)
+@font-face should be used for font replacement where possible - ensuring that the font can be safely used in .ttf format on the web in agreement with its licensing agreement.  Where this is an issue, look to use tools such as [TypeKit](https://typekit.com/) or [Fontdeck](http://fontdeck.com/)
+
+To generate @font-face files, the [Font Squirrel font-face generator](http://www.fontsquirrel.com/fontface/generator) should be used.
 
 JavaScript replacement techniques should be avoided where possible, as they are painful, time-consuming and usually inaccurate.  Flash replacement techniques (such as Sifr) should never be used.
 
-Define [supporting font-size classes](http://csswizardry.com/2012/02/pragmatic-practical-font-sizing-in-css/), in conjuction with headers to avoid restyling header sizes.
+Always define [supporting font-size classes](http://csswizardry.com/2012/02/pragmatic-practical-font-sizing-in-css/), in conjunction with headers to avoid restyling header sizes.
 
 
-
-##Reset vs Normalisation
+##<a name="section-5-f"></a> Reset vs Normalisation
 
 There is no set preference to using a reset CSS file or using a normalisation technique, as long as consistency is applied throughout projects.
 
-If a reset is prefered, the [Eric Meyer reloaded reset](http://html5doctor.com/html-5-reset-stylesheet/) should be used.
+If a reset is preferred, the [Eric Meyer reloaded reset](http://html5doctor.com/html-5-reset-stylesheet/) should be used.
 
 For normalisation, the excellent [normalise.css](http://necolas.github.com/normalize.css/) should be included.
 
+The TMW base templates do however use normalisation rather than a CSS reset.
 
-##Comments
+
+##<a name="section-5-g"></a> Comments
 
 Comment as much as you can as often as you can. Where it might be useful, include a commented out piece of markup which can help put the current CSS into context.
 
-CSS will be minified before it hits live servers, so don't worry about excessive commenting bloating code - the benefits far outweigh any filesize worries.
+CSS will be minified before it hits live servers, so don't worry about excessive commenting bloating code - the benefits far outweigh any file-size worries.
 
-This is especially true for responsive layouts where percentage width/margin's have been worked out.  Always comment in the ratio so that the resulting % values mean something should someone else look at your code.  A random 6dp percentage will mean nothing to anyone else looking at your CSS.
+This is especially true for responsive layouts where percentage width/margin's have been worked out.  Always comment in the ratio so that the resulting % values mean something to the next developer viewing your CSS.  A random 6dp percentage will mean nothing to anyone else looking at your code.
 
 e.g.
 
 		width: 34.042553% /* 320 / 940 */
 
 
-##Specificity, IDs and classes
+##<a name="section-5-h"></a> Specificity, IDs and classes
 
-CSS is designed to cascade, so make sure you understand [cascading and selector specificity](http://www.stuffandnonsense.co.uk/archives/css_specificity_wars.html) - it will enable you to write very terse and effective code.
+CSS is designed to cascade, so make sure you understand [cascading and selector specificity](http://www.stuffandnonsense.co.uk/archives/css_specificity_wars.html).  It will enable you to write very terse and effective code.
 
-Use of IDs and classes effect specificity massively.  Only use IDs where deemed necessary, especially on larger builds - classes are much more modular and portable.  If you want to use an ID solely as a JavaScript hook, consider using the ID alongside a class for CSS styling.
+Use of IDs and classes effect specificity massively.  Only use IDs where deemed necessary, especially on larger builds.  Classes are much more modular and portable.  If you want to use an ID solely as a JavaScript hook, consider using the ID alongside a class for CSS styling.
 
-Name classes and IDs by the nature of *What it is* rather than what it looks like. A class of blueBoxLeft may seem relevant at the time, but should it's colour change, it becomes meaningless.  Naming in conjuction with a more OOCSS approach should eliminate this ambiguity.
+Name classes and IDs by the nature of **what it is** rather than what it looks like. A class of blueBoxLeft may seem relevant at the time, but should its colour change, it will become meaningless.  Naming in conjunction with a more OOCSS approach should eliminate this ambiguity.
 
 
-##Conditional Stylesheets
+##<a name="section-5-i"></a> Conditional Stylesheets
 
 IE stylesheets can, by and large, be totally avoided. The only time an IE stylesheet may be required is to circumvent blatant lack of support (e.g. PNG fixes).
 
-As a general rule, all layout and box-model rules can and will work without an IE stylesheet if you refactor and rework your CSS. This means we never want to see <!--[if IE 7]> element{ margin-left:-9px; } < ![endif]--> or other such CSS that is clearly using arbitrary styling to just 'make stuff work'.
+As a general rule, all layout and box-model rules can and will work without an IE stylesheet if you refactor and rework your CSS. This means we never want to see `<!--[if IE 7]> element{ margin-left:-9px; } < ![endif]-->` or other such CSS that is clearly using arbitrary styling to just 'make stuff work'.
 
 If IE specific styling is required as a last resort, look to utilise Paul Irish's [body/html class conditional for IE* targeting](http://paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/).
 
 
-##!important
+##<a name="section-5-j"></a> !important
 
-It is okay to use !important on helper classes only. To add !important preemptively is fine, e.g. .error{ color:red!important }, as you know you will always want this rule to take precedence.
+It is okay to use !important on helper classes only. To add !important pre-emptively is fine, e.g. .error { color:red!important }, as you know you will always want this rule to take precedence.
 
 Using !important reactively, e.g. to get yourself out of nasty specificity situations, is not advised. Rework your CSS and try to combat these issues by refactoring your selectors. Keeping your selectors short and avoiding IDs will help out here massively.
 
 
-##Images
+##<a name="section-5-k"></a> Images
 
-Use CSS sprites when possible - [Sprite Cow](http://www.spritecow.com/) is a great tool for generating the CSS required for positioning.
+Use CSS sprites when possible. [Sprite Cow](http://www.spritecow.com/) is a great tool for generating the CSS required for positioning, as is [SpriteMe](http://spriteme.org/) for generating a sprite out of the images used on your site.
 
-
-##Debugging
-
-If you run into a CSS problem take code away before you start adding more in a bid to fix it. The problem exists in CSS that is already written, more CSS isn't necessarily the right answer!
-
-It can be tempting to put an overflow:hidden; on something to hide the effects of a layout quirk, but overflow was probably never the problem; fix the problem, not its symptoms.
+Image names should use dashes i.e. icon-facebook-blue.png
 
 
-##Preprocessors
+##<a name="section-5-l"></a> Debugging
+
+If you run into a CSS problem take code away before you start adding more in a bid to fix it. The problem will exist in the CSS that is already written, more CSS isn't necessarily the right answer!
+
+It can be tempting to put overflow:hidden; on something to hide the effects of a layout quirk, but overflow was probably never the problem; fix the problem, not its symptoms.
+
+
+##<a name="section-5-m"></a> Preprocessors
 
 Use of a preprocessor should be used on a per project basis where it is deemed necessary.
 
-Where a preprocessor is used, we shall use [LESS](http://lesscss.org/).
+Where a preprocessor is used, we shall use [LESS](http://lesscss.org/).  The TMW base templates contain a set of LESS base files that should be used.
 
 Be sure to know the ins-and-outs of excellent vanilla CSS and where a preprocessor can aid that, not hinder or undo it. Learn the downsides of preprocessors inside-out and then fuse the best aspects of the two with the bad bits of neither.
-	
 
-##Tools
+
+##<a name="section-5-n"></a> Tools
 
 - [Procssor](http://procssor.com/) - formats untidy CSS into indented loveliness
 
+***
 
-Javascript
-==========
+<a name="section-6"></a> Javascript
+===================================
 
-##Libraries
+##<a name="section-6-a"></a> Libraries
 
-We develop all of our new applications using a mix of native JavaScript and [jQuery](http://jquery.com/).
+We develop all of our new applications using a mix of native JavaScript and [jQuery](http://jquery.com/).  Always use the Google CDN to include jQuery as well as a local fallback should that not be available.
+
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.2.min.js"><\/script>')</script>
 
 
-##Plugins
+##<a name="section-6-b"></a> Plugins
 
-We maintain an active wiki detailing the JavaScript and jQuery plugins we use for common use cases such as form validation, carousels and lightboxes.  Any additions to this must first be added to the experimental list and then approved by at least 2 members of the team.
+We maintain an active wiki detailing the JavaScript and jQuery plugins we use for common use cases such as form validation, carousels and lightboxes.  Any additions to this must first be added to the experimental list and then approved by at least 2 Members of the team.
 
 All plugins should be added into the projects plugins.js and never included as a separate JS file, as it increases the number of page requests (page requests === bad).
 
 
-##General Coding Principles
+##<a name="section-6-c"></a> General JavaScript Principles
 
-- 99% of JavaScript should be included in external JavaScript files and included at the END of the BODY tag.  The only exception to this rule is [Modernizr](http://modernizr.com/) which can be included at the end of the HEAD.
+- 99% of JavaScript should be included in external JavaScript files and included at the END of the BODY tag.  The only exception to this rule is [Modernizr](http://modernizr.com/) which can be included at the end of the `<head>`.
 - Feature detect, don't browser detect.  [Modernizr](http://modernizr.com/) is a great resource for doing this.
 - Name variables and functions logically and in camelCase.
-- Prefix jQuery collection variables with the dollar ($) character e.g $headerChildren
+- Prefix jQuery collection variables with the dollar (`$`) character e.g `$headerChildren`
 - Class declarations should start with a capital letter.
 - Constants or configuration variables should be at the start of a class.
-- Global variables should be written in all caps - although avoid polluting the global namespace
+- Global variables should be written in all caps - although avoid polluting the global namespace where possible
 - Build using the object literal pattern e.g.
 
 		var BASENAME = {
@@ -344,9 +397,9 @@ All plugins should be added into the projects plugins.js and never included as a
 [The Essentials of Writing High Quality JavaScript](http://net.tutsplus.com/tutorials/javascript-ajax/the-essentials-of-writing-high-quality-javascript/)
 
 
-##Formatting and code sensibility
+##<a name="section-6-d"></a> Formatting and code sensibility
 
-- separate operators/comparators with spacing
+- Separate operators/comparators with spacing
 
 		// Good
 		if (foo && foo.bar && typeof foo.bar === 'object') {
@@ -383,13 +436,13 @@ All plugins should be added into the projects plugins.js and never included as a
 		}
 
 - Remap this to self when passing context
-- Always use === as a comparator (unless you really need flexible evaluations e.g comparison to null)
+- Always use `===` as a comparator (unless you really need flexible evaluations e.g comparison to null)
 - Always add a second radix param to parseInt() to prevent accidental octal issues
-- Never bother comparing variables to true/false
+- Never bother comparing variables to `true`/`false`
 - For large loops, either cache the length variable to prevent re-evaluation or use a reverse while loop
-- Don't create functions in loops (its slow, and stupid)
+- Don't create functions in loops - its slow (and stupid)
 - When creating functions with many parameters, pass in an object rather than listing numerous parameters.
-	- use $.extend if you are using jquery to extend a passed in object while providing defaults
+	- use `$.extend` if you are using jQuery to extend a passed in object while providing defaults
 - If possible, avoid using bitwise operations unless they really help. If used, document them with comments
 
 		// inverting bits to ease comparison to -1
@@ -397,23 +450,24 @@ All plugins should be added into the projects plugins.js and never included as a
 			alert('w00t!')
 		}
 
-##jQuery
+##<a name="section-6-e"></a> jQuery
 
-- Always cache dom selection if you plan to re-use data
+- Always cache DOM selection if you plan to re-use data
 - Use efficient query selectors, write for many browsers, don't assume document.querySelector()
 - Avoid using $.each for repeated or performance critical functionality, and instead use a for or reverse while loop (especially for large objects)
-- Use on() and off() handlers for events.  Everything else is now depreciated (live, delegate, bind)
-- When using simple html5 attribute data, simply use $selected.attr('data-foo') unless working with complex data types (where you can use $selected.data())
+- Use `on()` and `off()` handlers for events.  Everything else is now depreciated (live, delegate, bind)
+- When using simple html5 attribute data, simply use `$selected.attr('data-foo')` unless working with complex data types (where you can use `$selected.data()`)
+- Try to understand the underlying JavaScript functionality of jQuery methods.  This will help you write much more efficient selectors (watch Paul Irish's talk - [10 Things I Learned from the jQuery Source](http://paulirish.com/2010/10-things-i-learned-from-the-jquery-source/))
 
 
-##Debugging
+##<a name="section-6-f"></a> Debugging
 
 Learn how to use your browser tools properly as it will save you hours in debugging.
 
-If you're using alert() you're doing it wrong.  Use console.log(), or [Paul Irish's lightweight wrapper](http://paulirish.com/2009/log-a-lightweight-wrapper-for-consolelog/)
+If you're using `alert()` you're doing it wrong.  Use `console.log()`, or [Paul Irish's lightweight wrapper](http://paulirish.com/2009/log-a-lightweight-wrapper-for-consolelog/)
 
 
-##Resources
+##<a name="section-6-g"></a> Resources
 
 1. Forms:
 	- Uniform
@@ -423,14 +477,15 @@ If you're using alert() you're doing it wrong.  Use console.log(), or [Paul Iris
 
 This list will eventually go on a separate wiki detailing more specific plugin information.
 
+***
 
-
-Accessibility
--------------
+<a name="section-7"></a> Accessibility
+--------------------------------------
 
 - [Accessibility Testing](http://wave.webaim.org/)
 
+***
 
-Performance
------------
+<a name="section-8"></a> Performance and Optimisation
+-----------------------------------------------------
 
