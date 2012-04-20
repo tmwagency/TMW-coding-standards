@@ -14,8 +14,8 @@ to build upon for this document, and in some sections been directly quoted.
 ##Contents
 
 1. [General Guidelines](#section-1)
-	1. [Indentation](#section-1-a)
-	2. [Readability vs Compression](#section-1-b)
+	a. [Indentation](#section-1-a)
+	b. [Readability vs Compression](#section-1-b)
 2. [Browser Support](#section-2)
 3. [Base Templates](#section-3)
 4. [Markup](#section-4)
