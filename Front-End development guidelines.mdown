@@ -14,42 +14,71 @@ to build upon for this document, and in some sections been directly quoted.
 ##Contents
 
 1. [General Guidelines](#section-1)
-	
+
 	i. [Indentation](#section-1-a)
-	
+
 	ii. [Readability vs Compression](#section-1-b)
 
 2. [Browser Support](#section-2)
 3. [Base Templates](#section-3)
 4. [Markup](#section-4)
-	1. [HTML5](#section-4-a)
-	2. [General Markup Guidelines](#section-4-b)
-	3. [Quoting Attributes](#section-4-c)
-	4. [Character Encoding](#section-4-d)
-	5. [Accessibility](#section-4-e)
+
+	i. [HTML5](#section-4-a)
+
+	ii. [General Markup Guidelines](#section-4-b)
+
+	iii. [Quoting Attributes](#section-4-c)
+
+	iv. [Character Encoding](#section-4-d)
+
+	v. [Accessibility](#section-4-e)
+
 5. [CSS](#section-5)
-	1. [General CSS Principles](#section-5-a)
-	2. [Syntax and formatting](#section-5-b)
-	3. [Indenting](#section-5-c)
-	4. [OOCSS](#section-5-d)
-	5. [Typography](#section-5-e)
+
+	i. [General CSS Principles](#section-5-a)
+
+	ii. [Syntax and formatting](#section-5-b)
+
+	iii. [Indenting](#section-5-c)
+
+	iv. [OOCSS](#section-5-d)
+
+	v. [Typography](#section-5-e)
+
 	vi. [Reset vs Normalisation](#section-5-f)
+
 	vii. [Comments](#section-5-g)
+
 	viii. [Specificity, IDs and classes](#section-5-h)
+
 	ix. [Conditional Stylesheets](#section-5-i)
+
 	x. [!important](#section-5-j)
+
 	xi. [Images](#section-5-k)
+
 	xii. [Debugging](#section-5-l)
+
 	xiii. [Preprocessors](#section-5-m)
+
 	xiv. [Tools](#section-5-n)
+
 6. [JavaScript](#section-6)
+
 	i. [Libraries](#section-6-a)
+
 	ii. [Plugins](#section-6-b)
+
 	iii. [General JavaScript Principles](#section-6-c)
+
 	iv. [Formatting and code sensibility](#section-6-d)
+
 	v. [jQuery](#section-6-e)
+
 	vi. [Debugging](#section-6-f)
+
 	vii. [Resources](#section-6-g)
+	
 7. [Accessibility](#section-7)
 8. [Performance and Optimisation](#section-8)
 
