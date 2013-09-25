@@ -1,33 +1,41 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
+
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Tmw-frontend-guidelines by tmwagency</title>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Tmw-frontend-guidelines : Guidelines and standards for Front-end development at TMW" />
 
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Tmw-frontend-guidelines</title>
   </head>
-  <body>
-    <div class="wrapper">
-      <header>
-        <h1>Tmw-frontend-guidelines</h1>
-        <p>Guidelines and standards for Front-end development at TMW</p>
-        <p class="view"><a href="https://github.com/tmwagency/TMW-frontend-guidelines">View the Project on GitHub <small>tmwagency/TMW-frontend-guidelines</small></a></p>
-        <ul>
-          <li><a href="https://github.com/tmwagency/TMW-frontend-guidelines/zipball/master">Download <strong>ZIP File</strong></a></li>
-          <li><a href="https://github.com/tmwagency/TMW-frontend-guidelines/tarball/master">Download <strong>TAR Ball</strong></a></li>
-          <li><a href="https://github.com/tmwagency/TMW-frontend-guidelines">View On <strong>GitHub</strong></a></li>
-        </ul>
-      </header>
-      <section>
-        <h1>Front-End Dev guidelines</h1>
 
-<h2>Overview</h2>
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/tmwagency/TMW-frontend-guidelines">View on GitHub</a>
+
+          <h1 id="project_title">Tmw-frontend-guidelines</h1>
+          <h2 id="project_tagline">Guidelines and standards for Front-end development at TMW</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/tmwagency/TMW-frontend-guidelines/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/tmwagency/TMW-frontend-guidelines/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a name="front-end-dev-guidelines" class="anchor" href="#front-end-dev-guidelines"><span class="octicon octicon-link"></span></a>Front-End Dev guidelines</h1>
+
+<h2>
+<a name="overview" class="anchor" href="#overview"><span class="octicon octicon-link"></span></a>Overview</h2>
 
 <p>This document details the guidelines and standards adhered to by the Creative Technology department at TMW, and all web applications built
 should take these into consideration.  It is an evolving document and should be reviewed as and when required to keep up with changes in
@@ -37,7 +45,8 @@ technology and best practice.</p>
 and <a href="https://github.com/csswizardry/CSS-Guidelines/blob/master/CSS%20Guidelines.md">CSS Wizardry</a> both of which have been used as foundations
 to build upon for this document, and in some sections been directly quoted.</p>
 
-<h2>Contents</h2>
+<h2>
+<a name="contents" class="anchor" href="#contents"><span class="octicon octicon-link"></span></a>Contents</h2>
 
 <ol>
 <li>
@@ -113,7 +122,7 @@ to build upon for this document, and in some sections been directly quoted.</p>
 <li><p><a href="#section-7">Accessibility</a></p></li>
 <li><p><a href="#section-8">Performance and Optimisation</a></p></li>
 </ol><hr><h1>
-<a name="section-1"></a> General Guidelines</h1>
+<a name="-general-guidelines" class="anchor" href="#-general-guidelines"><span class="octicon octicon-link"></span></a><a name="section-1"></a> General Guidelines</h1>
 
 <ul>
 <li>All front-end code should display clear separation of presentation, content, and behaviour.</li>
@@ -126,19 +135,19 @@ to build upon for this document, and in some sections been directly quoted.</p>
 </li>
 <li>Gracefully degrade functionality when not present (e.g GPS, box-shadow, forms etc).</li>
 </ul><h2>
-<a name="section-1-a"></a> Indentation</h2>
+<a name="-indentation" class="anchor" href="#-indentation"><span class="octicon octicon-link"></span></a><a name="section-1-a"></a> Indentation</h2>
 
 <p>For all languages, indent your code with tabs.  The default tab size should be set as 4.</p>
 
 <h2>
-<a name="section-1-b"></a> Readability vs Compression</h2>
+<a name="-readability-vs-compression" class="anchor" href="#-readability-vs-compression"><span class="octicon octicon-link"></span></a><a name="section-1-b"></a> Readability vs Compression</h2>
 
 <p>We encourage readability over file-size when it comes to maintaining existing files. Plenty of white-space is encouraged, along with ASCII art, where appropriate. There is no need for any developer to purposefully compress HTML or CSS, nor obfuscate JavaScript.</p>
 
 <p>We will use server-side or build processes to automatically minify and gzip all static client-side files, such as CSS and JavaScript.</p>
 
 <hr><h1>
-<a name="section-2"></a> Browser Support</h1>
+<a name="-browser-support" class="anchor" href="#-browser-support"><span class="octicon octicon-link"></span></a><a name="section-2"></a> Browser Support</h1>
 
 <ul>
 <li>Internet Explorer 7+</li>
@@ -147,17 +156,17 @@ to build upon for this document, and in some sections been directly quoted.</p>
 <li>Safari 5</li>
 <li>Opera</li>
 </ul><hr><h1>
-<a name="section-3"></a> Base Templates</h1>
+<a name="-base-templates" class="anchor" href="#-base-templates"><span class="octicon octicon-link"></span></a><a name="section-3"></a> Base Templates</h1>
 
 <p>We will be using a mashup of <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap</a> and <a href="http://html5boilerplate.com/">H5BP</a>.  This is still being fleshed out and will be available on the <a href="https://github.com/organizations/tmwagency">TMW github repo</a>.</p>
 
 <p>There will also be a much stripped back version of this available for less involved template builds, also available on github.</p>
 
 <hr><h1>
-<a name="section-4"></a> Markup</h1>
+<a name="-markup" class="anchor" href="#-markup"><span class="octicon octicon-link"></span></a><a name="section-4"></a> Markup</h1>
 
 <h2>
-<a name="section-4-a"></a> HTML5</h2>
+<a name="-html5" class="anchor" href="#-html5"><span class="octicon octicon-link"></span></a><a name="section-4-a"></a> HTML5</h2>
 
 <p>The HTML5 Doctype and HTML5 features will be used on projects when appropriate.</p>
 
@@ -171,7 +180,7 @@ to build upon for this document, and in some sections been directly quoted.</p>
 </ul><p>We will test our markup against the <a href="http://validator.w3.org/">W3C validator</a>, to ensure that the markup is well formed. 100% valid code is not a goal, but validation certainly helps to write more maintainable sites as well as debugging code. TMW does not guarantee markup is 100% valid, but instead assures the cross-browser experience is consistent.</p>
 
 <h2>
-<a name="section-4-b"></a> General Markup Guidelines</h2>
+<a name="-general-markup-guidelines" class="anchor" href="#-general-markup-guidelines"><span class="octicon octicon-link"></span></a><a name="section-4-b"></a> General Markup Guidelines</h2>
 
 <p>The following are general guidelines for structuring your HTML markup. Authors are reminded to always use markup which represents the semantics of the content in the document being created.</p>
 
@@ -200,7 +209,7 @@ to build upon for this document, and in some sections been directly quoted.</p>
 <ul>
 <li>Tables <strong>shouldn't ever</strong> be used for page layout.</li>
 </ul><h2>
-<a name="section-4-c"></a> Quoting Attributes</h2>
+<a name="-quoting-attributes" class="anchor" href="#-quoting-attributes"><span class="octicon octicon-link"></span></a><a name="section-4-c"></a> Quoting Attributes</h2>
 
 <p>While the HTML5 specification defines quotes around attributes as optional for consistency with attributes that accept whitespace, all attributes should be quoted.</p>
 
@@ -208,7 +217,7 @@ to build upon for this document, and in some sections been directly quoted.</p>
 </code></pre>
 
 <h2>
-<a name="section-4-d"></a> Character Encoding</h2>
+<a name="-character-encoding" class="anchor" href="#-character-encoding"><span class="octicon octicon-link"></span></a><a name="section-4-d"></a> Character Encoding</h2>
 
 <p>All markup should be delivered as UTF-8, as it's the most friendly for internationalization. It should be designated in both the HTTP header and the head of the document.</p>
 
@@ -218,17 +227,17 @@ to build upon for this document, and in some sections been directly quoted.</p>
 </code></pre>
 
 <h2>
-<a name="section-4-e"></a> Accessibility</h2>
+<a name="-accessibility" class="anchor" href="#-accessibility"><span class="octicon octicon-link"></span></a><a name="section-4-e"></a> Accessibility</h2>
 
 <p>Consider ARIA integration for high accessibility sites.</p>
 
 <p>For our full guidelines on Accessibility, refer to the <a href="#section-7">Accessibility Guidelines</a> section of this document.</p>
 
 <hr><h1>
-<a name="section-5"></a> CSS</h1>
+<a name="-css" class="anchor" href="#-css"><span class="octicon octicon-link"></span></a><a name="section-5"></a> CSS</h1>
 
 <h2>
-<a name="section-5-a"></a> General CSS Principles</h2>
+<a name="-general-css-principles" class="anchor" href="#-general-css-principles"><span class="octicon octicon-link"></span></a><a name="section-5-a"></a> General CSS Principles</h2>
 
 <ul>
 <li>Every time you write inline styles in your markup, a front-end developer somewhere dies - whether it's in a style tag or directly in the markup. Don't do it.</li>
@@ -236,7 +245,7 @@ to build upon for this document, and in some sections been directly quoted.</p>
 <li>Use the <code>&lt;link&gt;</code> tag to include, never <code>@import</code>.</li>
 <li>Ensure markup and style stays separate (some style classes are allowed, e.g imageReplace etc).  Only use style only markup if you absolutely have to (e.g extra wrapping elements); consider <code>:before</code> and <code>:after</code> CSS pseudo-elements if styles are not 100% necessary.</li>
 </ul><h2>
-<a name="section-5-b"></a> Syntax and formatting</h2>
+<a name="-syntax-and-formatting" class="anchor" href="#-syntax-and-formatting"><span class="octicon octicon-link"></span></a><a name="section-5-b"></a> Syntax and formatting</h2>
 
 <ul>
 <li>Use multi-line CSS declarations. This helps with version control (diffing single line CSS can be a nightmare). Group CSS declarations by type - keeping font related styling together, layout styling together etc - and ordered by relevance, not alphabetized.</li>
@@ -276,7 +285,7 @@ div.content {}
 </code></pre>
 </li>
 </ul><h2>
-<a name="section-5-c"></a> Indenting</h2>
+<a name="-indenting" class="anchor" href="#-indenting"><span class="octicon octicon-link"></span></a><a name="section-5-c"></a> Indenting</h2>
 
 <p>For each level of markup nesting, indent your CSS to match.  For example:</p>
 
@@ -289,7 +298,7 @@ div.content {}
 </code></pre>
 
 <h2>
-<a name="section-5-d"></a> OOCSS</h2>
+<a name="-oocss" class="anchor" href="#-oocss"><span class="octicon octicon-link"></span></a><a name="section-5-d"></a> OOCSS</h2>
 
 <p>When building components try and keep a DRY, OO frame of mind.</p>
 
@@ -302,7 +311,7 @@ div.content {}
 <ul>
 <li><a href="http://csswizardry.com/2011/09/the-nav-abstraction/">The Nav Abstraction</a></li>
 </ul><h2>
-<a name="section-5-e"></a> Typography</h2>
+<a name="-typography" class="anchor" href="#-typography"><span class="octicon octicon-link"></span></a><a name="section-5-e"></a> Typography</h2>
 
 <p>@font-face should be used for font replacement where possible - ensuring that the font can be safely used in .ttf format on the web in agreement with its licensing agreement.  Where this is an issue, look to use tools such as <a href="https://typekit.com/">TypeKit</a> or <a href="http://fontdeck.com/">Fontdeck</a></p>
 
@@ -313,7 +322,7 @@ div.content {}
 <p>Always define <a href="http://csswizardry.com/2012/02/pragmatic-practical-font-sizing-in-css/">supporting font-size classes</a>, in conjunction with headers to avoid restyling header sizes.</p>
 
 <h2>
-<a name="section-5-f"></a> Reset vs Normalisation</h2>
+<a name="-reset-vs-normalisation" class="anchor" href="#-reset-vs-normalisation"><span class="octicon octicon-link"></span></a><a name="section-5-f"></a> Reset vs Normalisation</h2>
 
 <p>There is no set preference to using a reset CSS file or using a normalisation technique, as long as consistency is applied throughout projects.</p>
 
@@ -324,7 +333,7 @@ div.content {}
 <p>The TMW base templates do however use normalisation rather than a CSS reset.</p>
 
 <h2>
-<a name="section-5-g"></a> Comments</h2>
+<a name="-comments" class="anchor" href="#-comments"><span class="octicon octicon-link"></span></a><a name="section-5-g"></a> Comments</h2>
 
 <p>Comment as much as you can as often as you can. Where it might be useful, include a commented out piece of markup which can help put the current CSS into context.</p>
 
@@ -338,7 +347,7 @@ div.content {}
 </code></pre>
 
 <h2>
-<a name="section-5-h"></a> Specificity, IDs and classes</h2>
+<a name="-specificity-ids-and-classes" class="anchor" href="#-specificity-ids-and-classes"><span class="octicon octicon-link"></span></a><a name="section-5-h"></a> Specificity, IDs and classes</h2>
 
 <p>CSS is designed to cascade, so make sure you understand <a href="http://www.stuffandnonsense.co.uk/archives/css_specificity_wars.html">cascading and selector specificity</a>.  It will enable you to write very terse and effective code.</p>
 
@@ -347,7 +356,7 @@ div.content {}
 <p>Name classes and IDs by the nature of <strong>what it is</strong> rather than what it looks like. A class of blueBoxLeft may seem relevant at the time, but should its colour change, it will become meaningless.  Naming in conjunction with a more OOCSS approach should eliminate this ambiguity.</p>
 
 <h2>
-<a name="section-5-i"></a> Conditional Stylesheets</h2>
+<a name="-conditional-stylesheets" class="anchor" href="#-conditional-stylesheets"><span class="octicon octicon-link"></span></a><a name="section-5-i"></a> Conditional Stylesheets</h2>
 
 <p>IE stylesheets can, by and large, be totally avoided. The only time an IE stylesheet may be required is to circumvent blatant lack of support (e.g. PNG fixes).</p>
 
@@ -356,28 +365,28 @@ div.content {}
 <p>If IE specific styling is required as a last resort, look to utilise Paul Irish's <a href="http://paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/">body/html class conditional for IE* targeting</a>.</p>
 
 <h2>
-<a name="section-5-j"></a> !important</h2>
+<a name="-important" class="anchor" href="#-important"><span class="octicon octicon-link"></span></a><a name="section-5-j"></a> !important</h2>
 
 <p>It is okay to use !important on helper classes only. To add !important pre-emptively is fine, e.g. .error { color:red!important }, as you know you will always want this rule to take precedence.</p>
 
 <p>Using !important reactively, e.g. to get yourself out of nasty specificity situations, is not advised. Rework your CSS and try to combat these issues by refactoring your selectors. Keeping your selectors short and avoiding IDs will help out here massively.</p>
 
 <h2>
-<a name="section-5-k"></a> Images</h2>
+<a name="-images" class="anchor" href="#-images"><span class="octicon octicon-link"></span></a><a name="section-5-k"></a> Images</h2>
 
 <p>Use CSS sprites when possible. <a href="http://www.spritecow.com/">Sprite Cow</a> is a great tool for generating the CSS required for positioning, as is <a href="http://spriteme.org/">SpriteMe</a> for generating a sprite out of the images used on your site.</p>
 
 <p>Image names should use dashes i.e. icon-facebook-blue.png</p>
 
 <h2>
-<a name="section-5-l"></a> Debugging</h2>
+<a name="-debugging" class="anchor" href="#-debugging"><span class="octicon octicon-link"></span></a><a name="section-5-l"></a> Debugging</h2>
 
 <p>If you run into a CSS problem take code away before you start adding more in a bid to fix it. The problem will exist in the CSS that is already written, more CSS isn't necessarily the right answer!</p>
 
 <p>It can be tempting to put overflow:hidden; on something to hide the effects of a layout quirk, but overflow was probably never the problem; fix the problem, not its symptoms.</p>
 
 <h2>
-<a name="section-5-m"></a> Preprocessors</h2>
+<a name="-preprocessors" class="anchor" href="#-preprocessors"><span class="octicon octicon-link"></span></a><a name="section-5-m"></a> Preprocessors</h2>
 
 <p>Use of a preprocessor should be used on a per project basis where it is deemed necessary.</p>
 
@@ -386,16 +395,16 @@ div.content {}
 <p>Be sure to know the ins-and-outs of excellent vanilla CSS and where a preprocessor can aid that, not hinder or undo it. Learn the downsides of preprocessors inside-out and then fuse the best aspects of the two with the bad bits of neither.</p>
 
 <h2>
-<a name="section-5-n"></a> Tools</h2>
+<a name="-tools" class="anchor" href="#-tools"><span class="octicon octicon-link"></span></a><a name="section-5-n"></a> Tools</h2>
 
 <ul>
 <li>
 <a href="http://procssor.com/">Procssor</a> - formats untidy CSS into indented loveliness</li>
 </ul><hr><h1>
-<a name="section-6"></a> Javascript</h1>
+<a name="-javascript" class="anchor" href="#-javascript"><span class="octicon octicon-link"></span></a><a name="section-6"></a> Javascript</h1>
 
 <h2>
-<a name="section-6-a"></a> Libraries</h2>
+<a name="-libraries" class="anchor" href="#-libraries"><span class="octicon octicon-link"></span></a><a name="section-6-a"></a> Libraries</h2>
 
 <p>We develop all of our new applications using a mix of native JavaScript and <a href="http://jquery.com/">jQuery</a>.  Always use the Google CDN to include jQuery as well as a local fallback should that not be available.</p>
 
@@ -404,14 +413,14 @@ div.content {}
 </code></pre>
 
 <h2>
-<a name="section-6-b"></a> Plugins</h2>
+<a name="-plugins" class="anchor" href="#-plugins"><span class="octicon octicon-link"></span></a><a name="section-6-b"></a> Plugins</h2>
 
 <p>We maintain an active wiki detailing the JavaScript and jQuery plugins we use for common use cases such as form validation, carousels and lightboxes.  Any additions to this must first be added to the experimental list and then approved by at least 2 Members of the team.</p>
 
 <p>All plugins should be added into the projects plugins.js and never included as a separate JS file, as it increases the number of page requests (page requests === bad).</p>
 
 <h2>
-<a name="section-6-c"></a> General JavaScript Principles</h2>
+<a name="-general-javascript-principles" class="anchor" href="#-general-javascript-principles"><span class="octicon octicon-link"></span></a><a name="section-6-c"></a> General JavaScript Principles</h2>
 
 <ul>
 <li>99% of JavaScript should be included in external JavaScript files and included at the END of the BODY tag.  The only exception to this rule is <a href="http://modernizr.com/">Modernizr</a> which can be included at the end of the <code>&lt;head&gt;</code>.</li>
@@ -475,7 +484,7 @@ BASENAME.init();
 <a href="http://net.tutsplus.com/tutorials/javascript-ajax/the-essentials-of-writing-high-quality-javascript/">The Essentials of Writing High Quality JavaScript</a></p>
 
 <h2>
-<a name="section-6-d"></a> Formatting and code sensibility</h2>
+<a name="-formatting-and-code-sensibility" class="anchor" href="#-formatting-and-code-sensibility"><span class="octicon octicon-link"></span></a><a name="section-6-d"></a> Formatting and code sensibility</h2>
 
 <ul>
 <li>
@@ -541,7 +550,7 @@ if (~foo.bar.indexOf('leetness')){
 </code></pre>
 </li>
 </ul><h2>
-<a name="section-6-e"></a> jQuery</h2>
+<a name="-jquery" class="anchor" href="#-jquery"><span class="octicon octicon-link"></span></a><a name="section-6-e"></a> jQuery</h2>
 
 <ul>
 <li>Always cache DOM selection if you plan to re-use data</li>
@@ -551,14 +560,14 @@ if (~foo.bar.indexOf('leetness')){
 <li>When using simple html5 attribute data, simply use <code>$selected.attr('data-foo')</code> unless working with complex data types (where you can use <code>$selected.data()</code>)</li>
 <li>Try to understand the underlying JavaScript functionality of jQuery methods.  This will help you write much more efficient selectors (watch Paul Irish's talk - <a href="http://paulirish.com/2010/10-things-i-learned-from-the-jquery-source/">10 Things I Learned from the jQuery Source</a>)</li>
 </ul><h2>
-<a name="section-6-f"></a> Debugging</h2>
+<a name="-debugging-1" class="anchor" href="#-debugging-1"><span class="octicon octicon-link"></span></a><a name="section-6-f"></a> Debugging</h2>
 
 <p>Learn how to use your browser tools properly as it will save you hours in debugging.</p>
 
 <p>If you're using <code>alert()</code> you're doing it wrong.  Use <code>console.log()</code>, or <a href="http://paulirish.com/2009/log-a-lightweight-wrapper-for-consolelog/">Paul Irish's lightweight wrapper</a></p>
 
 <h2>
-<a name="section-6-g"></a> Resources</h2>
+<a name="-resources" class="anchor" href="#-resources"><span class="octicon octicon-link"></span></a><a name="section-6-g"></a> Resources</h2>
 
 <ol>
 <li>Forms:
@@ -573,19 +582,24 @@ if (~foo.bar.indexOf('leetness')){
 </ol><p>This list will eventually go on a separate wiki detailing more specific plugin information.</p>
 
 <hr><h2>
-<a name="section-7"></a> Accessibility</h2>
+<a name="-accessibility-1" class="anchor" href="#-accessibility-1"><span class="octicon octicon-link"></span></a><a name="section-7"></a> Accessibility</h2>
 
 <ul>
 <li><a href="http://wave.webaim.org/">Accessibility Testing</a></li>
 </ul><hr><h2>
-<a name="section-8"></a> Performance and Optimisation</h2>
+<a name="-performance-and-optimisation" class="anchor" href="#-performance-and-optimisation"><span class="octicon octicon-link"></span></a><a name="section-8"></a> Performance and Optimisation</h2>
       </section>
-      <footer>
-        <p>This project is maintained by <a href="https://github.com/tmwagency">tmwagency</a></p>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Tmw-frontend-guidelines maintained by <a href="https://github.com/tmwagency">tmwagency</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
       </footer>
     </div>
-    <script src="javascripts/scale.fix.js"></script>
+
     
+
   </body>
 </html>
