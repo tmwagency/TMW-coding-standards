@@ -14,71 +14,39 @@ to build upon for this document, and in some sections been directly quoted.
 ##Contents
 
 1. [General Guidelines](#section-intro)
-
 	i. [Indentation](#section-intro-indentation)
-
 	ii. [Readability vs Compression](#section-intro-readability)
-
 2. [Browser Support](#section-browsersupport)
 3. [Base Templates and frameworks](#section-frameworks)
 4. [Markup](#section-html)
-
 	i. [HTML5](#section-html-html5)
-
 	ii. [General Markup Guidelines](#section-html-general)
-
 	iii. [Quoting Attributes](#section-html-attributes)
-
 	iv. [Character Encoding](#section-html-encoding)
-
 	v. [Accessibility](#section-html-accessibility)
-
 5. [CSS](#section-css)
-
 	i. [General CSS Principles](#section-css-general)
-
 	ii. [Syntax and formatting](#section-css-formatting)
-
 	iii. [Indenting](#section-css-indenting)
-
 	iv. [OOCSS](#section-css-ocss)
-
 	v. [Typography](#section-css-typography)
-
 	vi. [Reset vs Normalisation](#section-css-reset)
-
 	vii. [Comments](#section-css-comments)
-
 	viii. [Specificity, IDs and classes](#section-css-specificity)
-
 	ix. [Conditional Stylesheets](#section-css-conditionalstylesheets)
-
 	x. [!important](#section-css-important)
-
 	xi. [Images](#section-css-images)
-
 	xii. [Debugging](#section-css-debugging)
-
 	xiii. [Preprocessors](#section-css-preprocessors)
-
 	xiv. [Tools](#section-css-tools)
-
 6. [JavaScript](#section-js)
-
 	i. [Libraries](#section-js-libraries)
-
 	ii. [Plugins](#section-js-plugins)
-
 	iii. [General JavaScript Principles](#section-js-general)
-
 	iv. [Formatting and code sensibility](#section-js-formatting)
-
 	v. [jQuery](#section-js-jquery)
-
 	vi. [Debugging](#section-js-debugging)
-
 	vii. [Resources](#section-js-resources)
-	
 7. [Accessibility](#section-accessibility)
 8. [Performance and Optimisation](#section-performance)
 
@@ -152,7 +120,7 @@ The following are general guidelines for structuring your HTML markup. Authors a
 - Use `<p>` elements for paragraph delimiters as opposed to multiple `<br />` tags.
 - Items in list form should always be housed in a `<ul>`, `<ol>`, or `<dl>`, never a set of `<div>`s or `<p>`s.
 - Place an HTML comment around DIV tags that contain a larger amount of markup to indicate the element you're closing. It will help when there is a lot of nesting and indentation. For example:
-	
+
 		<!-- Start of .contentWrap -->
 		<div class="contentWrap">
 
@@ -216,7 +184,7 @@ For our full guidelines on Accessibility, refer to the [Accessibility Guidelines
 - Use shorthand when specifying multiple values.  Remember longhand can be shorter for single values.
 - Multi-attribute selectors should go on separate lines.
 - Don't over qualify class or ID selectors.  Leads to specificity issues further down the line.
-		
+
 		// Bad
 		div.content {}
 
@@ -232,10 +200,10 @@ For our full guidelines on Accessibility, refer to the [Accessibility Guidelines
 			right: 0;
 			bottom: 0;
 			left: 0;
-			
+
 			padding: 10px 0 0 0;
 			margin: 10px 0;
-			
+
 			background: red;
 			border-radius: 10px;
 			-moz-border-radius: 10px;
@@ -334,7 +302,7 @@ It is hard to advise on a one size fits all solution for images currently.  Inst
 
 CSS sprites can be very useful for combining the number of images on your site into a single HTTP request. [Sprite Cow](http://www.spritecow.com/) is a great tool for generating the CSS required for positioning, as is [SpriteMe](http://spriteme.org/) for generating a sprite out of the images used on your site.
 
-Alternatively, converting your images to data URI's and including them in the CSS avoids HTTP requests entirely  
+Alternatively, converting your images to data URI's and including them in the CSS avoids HTTP requests entirely
 
 Image names should use dashes and be named so that their use is clear i.e. icon-facebook-blue.png
 
@@ -441,7 +409,7 @@ All plugins should be added into the projects plugins.js and never included as a
 					//fire off all other classes
 					if (LightBox.$lightbox.length > 0) {
 						LightBox.init();
-					}					
+					}
 				}
 			},
 			LightBox = {
@@ -469,14 +437,14 @@ All plugins should be added into the projects plugins.js and never included as a
 		if (foo && foo.bar && typeof foo.bar === 'object') {
 			foo.bar.call();
 		}
-	
+
 		// Terrible
 		if(foo&&foo.bar&&typeof foo.bar==='object'){
 			foo.bar.call();
 		}
 
 - Use braces for logic evaluations.  If evaluation execution is simple, keep non-braced logic on a single line e.g:
-	
+
 		// Good
 		if (i < 10) return true;
 
@@ -484,15 +452,15 @@ All plugins should be added into the projects plugins.js and never included as a
 		if(foo && foo.bar && foo.bar > 10) {
 			foo.baz = foo.bar - 100 * 2.7 + 'rad'
 		}
-	
+
 		// Bad
 		if(foo && foo.bar && foo.bar > 10)
 			foo.baz = foo.bar - 100 * 2.7 + 'rad'
-	
+
 		// Bad
 		if(i < 10)
 			return true;
-		
+
 		// Bad
 		if(i < 10)
 		{
