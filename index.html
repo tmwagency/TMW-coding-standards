@@ -31,621 +31,388 @@
     <!-- MAIN CONTENT -->
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
-        <h1>
-          <a name="front-end-dev-guidelines" class="anchor" href="#front-end-dev-guidelines"><span class="octicon octicon-link"></span></a>Front-End Dev guidelines</h1>
+        <h1 id="front-end-dev-guidelines">Front-End Dev guidelines</h1>
+        <h2 id="overview">Overview</h2>
+        <p>This document details the guidelines and standards adhered to by the Creative Technology department at TMW, and all web applications built should take these into consideration. It is an evolving document and should be reviewed as and when required to keep up with changes in technology and best practice.</p>
+        <p>These guidelines have been compiled looking at various previously written guidelines - credit goes to <a href="http://na.isobar.com/standards">Isobar</a> and <a href="https://github.com/csswizardry/CSS-Guidelines/blob/master/CSS%20Guidelines.md">CSS Wizardry</a> both of which have been used as foundations to build upon for this document, and in some sections been directly quoted.</p>
+        <h2 id="contents">Contents</h2>
+        <ol type="1">
+        <li><a href="#section-intro">General Guidelines</a>
+        <ol type="i">
+        <li><a href="#section-intro-indentation">Indentation</a></li>
+        <li><a href="#section-intro-readability">Readability vs Compression</a></li>
+        </ol></li>
+        <li><a href="#section-browsersupport">Browser Support</a></li>
+        <li><a href="#section-frameworks">Base Templates and frameworks</a></li>
+        <li><a href="#section-html">Markup</a>
+        <ol type="i">
+        <li><a href="#section-html-html5">HTML5</a></li>
+        <li><a href="#section-html-general">General Markup Guidelines</a></li>
+        <li><a href="#section-html-attributes">Quoting Attributes</a></li>
+        <li><a href="#section-html-encoding">Character Encoding</a></li>
+        <li><a href="#section-html-accessibility">Accessibility</a></li>
+        </ol></li>
+        <li><a href="#section-css">CSS</a>
+        <ol type="i">
+        <li><a href="#section-css-general">General CSS Principles</a></li>
+        <li><a href="#section-css-formatting">Syntax and formatting</a></li>
+        <li><a href="#section-css-indenting">Indenting</a></li>
+        <li><a href="#section-css-ocss">OOCSS</a></li>
+        <li><a href="#section-css-typography">Typography</a></li>
+        <li><a href="#section-css-reset">Reset vs Normalisation</a></li>
+        <li><a href="#section-css-comments">Comments</a></li>
+        <li><a href="#section-css-specificity">Specificity, IDs and classes</a></li>
+        <li><a href="#section-css-conditionalstylesheets">Conditional Stylesheets</a></li>
+        <li><a href="#section-css-important">!important</a></li>
+        <li><a href="#section-css-images">Images</a></li>
+        <li><a href="#section-css-debugging">Debugging</a></li>
+        <li><a href="#section-css-preprocessors">Preprocessors</a></li>
+        <li><a href="#section-css-tools">Tools</a></li>
+        </ol></li>
+        <li><a href="#section-js">JavaScript</a>
+        <ol type="i">
+        <li><a href="#section-js-libraries">Libraries</a></li>
+        <li><a href="#section-js-plugins">Plugins</a></li>
+        <li><a href="#section-js-general">General JavaScript Principles</a></li>
+        <li><a href="#section-js-formatting">Formatting and code sensibility</a></li>
+        <li><a href="#section-js-jquery">jQuery</a></li>
+        <li><a href="#section-js-debugging">Debugging</a></li>
+        <li><a href="#section-js-resources">Resources</a></li>
+        </ol></li>
+        <li><a href="#section-accessibility">Accessibility</a></li>
+        <li><a href="#section-performance">Performance and Optimisation</a></li>
+        </ol>
+        <hr />
+        <h1 id="general-guidelines"><a name="section-intro"></a> General Guidelines</h1>
+        <ul>
+        <li>All front-end code should display clear separation of presentation, content, and behaviour.</li>
+        <li>Markup should be well formed, semantically correct and generally valid.</li>
+        <li>JavaScript should progressively enhance the experience
+        <ul>
+        <li>Use feature detection rather than browser sniffing (edge cases such as performance are acceptable)</li>
+        </ul></li>
+        <li>Gracefully degrade functionality when not present (e.g GPS, box-shadow, forms etc).</li>
+        </ul>
+        <h2 id="indentation"><a name="section-intro-indentation"></a> Indentation</h2>
+        <p>For all languages, indent your code with tabs. The default tab size should be set as 4.</p>
+        <h2 id="readability-vs-compression"><a name="section-intro-readability"></a> Readability vs Compression</h2>
+        <p>We encourage readability over file-size when it comes to maintaining existing files. Plenty of white-space is encouraged, along with ASCII art, where appropriate. There is no need for any developer to purposefully compress HTML or CSS, nor obfuscate JavaScript.</p>
+        <p>We will use server-side or build processes to automatically minify and gzip all static client-side files, such as CSS and JavaScript.</p>
+        <hr />
+        <h1 id="browser-support"><a name="section-browsersupport"></a> Browser Support</h1>
+        <ul>
+        <li>Internet Explorer 7+</li>
+        <li>Firefox 3.6+</li>
+        <li>Google Chrome</li>
+        <li>Safari 5</li>
+        <li>Opera</li>
+        </ul>
+        <hr />
+        <h1 id="base-templates-and-frameworks"><a name="section-frameworks"></a> Base Templates and frameworks</h1>
+        <p>We use <a href="http://tmwagency.github.io/kickoff/">Kickoff</a>, a lightweight front-end framework we have put together for creating scalable, responsive sites.</p>
+        <p>When building static templates, we use <a href="http://tmwagency.github.io/kickoff/statix/index.html">Kickoff Statix</a>, which integrates Kickoff with Assemble to make templating faster and more maintainable.</p>
+        <p>Both Kickoff and Kickoff Statix are actively maintained by the Creative Tech team at TMW; for more information about their features, getting started and demos, see the <a href="http://tmwagency.github.io/kickoff/">Kickoff documentation site</a>.</p>
+        <hr />
+        <h1 id="markup"><a name="section-html"></a> Markup</h1>
+        <h2 id="html5"><a name="section-html-html5"></a> HTML5</h2>
+        <p>The HTML5 Doctype and HTML5 features will be used on projects when appropriate.</p>
+        <p>To ensure HTML5 markup compatibility with older browsers, use either:</p>
+        <ul>
+        <li><a href="http://www.modernizr.com/">Modernizr</a> - consider bloat, use the build generator to decrease its size</li>
+        <li><a href="http://code.google.com/p/html5shiv/">HTML5shiv</a> - no feature detection, simply ensures markup compatibility</li>
+        </ul>
+        <p>We will test our markup against the <a href="http://validator.w3.org/">W3C validator</a>, to ensure that the markup is well formed. 100% valid code is not a goal, but validation certainly helps to write more maintainable sites as well as debugging code. TMW does not guarantee markup is 100% valid, but instead assures the cross-browser experience is consistent.</p>
+        <h2 id="general-markup-guidelines"><a name="section-html-general"></a> General Markup Guidelines</h2>
+        <p>The following are general guidelines for structuring your HTML markup. Authors are reminded to always use markup which represents the semantics of the content in the document being created.</p>
+        <ul>
+        <li>Use <code>&lt;p&gt;</code> elements for paragraph delimiters as opposed to multiple <code>&lt;br /&gt;</code> tags.</li>
+        <li>Items in list form should always be housed in a <code>&lt;ul&gt;</code>, <code>&lt;ol&gt;</code>, or <code>&lt;dl&gt;</code>, never a set of <code>&lt;div&gt;</code>s or <code>&lt;p&gt;</code>s.</li>
+        <li><p>Place an HTML comment around DIV tags that contain a larger amount of markup to indicate the element you're closing. It will help when there is a lot of nesting and indentation. For example:</p>
+        <pre><code>&lt;!-- Start of .contentWrap --&gt;
+        &lt;div class=&quot;contentWrap&quot;&gt;
+
+            //some markup goes here
+
+        &lt;/div&gt; &lt;!-- End of .contentWrap --&gt;</code></pre></li>
+        <li>Make use of <code>&lt;thead&gt;</code>, <code>&lt;tbody&gt;</code>, and <code>&lt;th&gt;</code> tags (and <code>Scope</code> attribute) when appropriate.</li>
+        <li>Make use of <code>&lt;dl&gt;</code> (definition lists) and <code>&lt;blockquote&gt;</code>, when appropriate.</li>
+        <li>Use <code>&lt;label&gt;</code> fields to label each form field. The <code>for</code> attribute should associate itself with the input field, so users can click the labels and obtain focus.</li>
+        <li>Do not use the <code>size</code> attribute on your input fields. The <code>size</code> attribute is relative to the font-size of the text inside the input. Instead use CSS width.</li>
+        <li>Always use title-case for headers and titles. Do not use all caps or all lowercase titles in markup, instead apply the CSS property <code>text-transform: uppercase/lowercase</code>.</li>
+        <li><p>Use microformats and/or Microdata where appropriate, specifically <code>hCard</code> and <code>adr</code>.</p></li>
+        </ul>
+        <p>...and the single most important rule...</p>
+        <ul>
+        <li>Tables <strong>shouldn't ever</strong> be used for page layout.</li>
+        </ul>
+        <h2 id="quoting-attributes"><a name="section-html-attributes"></a> Quoting Attributes</h2>
+        <p>While the HTML5 specification defines quotes around attributes as optional for consistency with attributes that accept whitespace, all attributes should be quoted.</p>
+        <pre><code>&lt;a href=&quot;mylink.html&quot; title=&quot;My Link Title&quot; data-attribute=&quot;32&quot;&gt;This is my Link&lt;/a&gt;</code></pre>
+        <h2 id="character-encoding"><a name="section-html-encoding"></a> Character Encoding</h2>
+        <p>All markup should be delivered as UTF-8, as it's the most friendly for internationalization. It should be designated in both the HTTP header and the head of the document.</p>
+        <p>Set the character set using <code>&lt;meta&gt;</code> tags:</p>
+        <pre><code>&lt;meta charset=&quot;utf-8&quot;&gt;</code></pre>
+        <h2 id="accessibility"><a name="section-html-accessibility"></a> Accessibility</h2>
+        <p>Consider ARIA integration for high accessibility sites.</p>
+        <p>For our full guidelines on Accessibility, refer to the <a href="#section-accessibility">Accessibility Guidelines</a> section of this document.</p>
+        <hr />
+        <h1 id="css"><a name="section-css"></a> CSS</h1>
+        <h2 id="general-css-principles"><a name="section-css-general"></a> General CSS Principles</h2>
+        <ul>
+        <li>Every time you write inline styles in your markup, a front-end developer somewhere dies - whether it's in a style tag or directly in the markup. Don't do it.</li>
+        <li>Add CSS through external files, minimizing the number of files, if possible. CSS should always be included in the <code>&lt;head&gt;</code> of the document.</li>
+        <li>Use the <code>&lt;link&gt;</code> tag to include, never <code>@import</code>.</li>
+        <li>Ensure markup and style stays separate (some style classes are allowed, e.g imageReplace etc). Only use style only markup if you absolutely have to (e.g extra wrapping elements); consider <code>:before</code> and <code>:after</code> CSS pseudo-elements if styles are not 100% necessary.</li>
+        </ul>
+        <h2 id="syntax-and-formatting"><a name="section-css-formatting"></a> Syntax and formatting</h2>
+        <ul>
+        <li>Use multi-line CSS declarations. This helps with version control (diff-ing single line CSS can be a nightmare). Group CSS declarations by type - keeping font related styling together, layout styling together etc - and ordered by relevance, not alphabetized.</li>
+        <li>All CSS rules should have a space after the selector colon and a trailing semi-colon.</li>
+        <li>Selectors should be specified using a simplified version of BEM
+        <ul>
+        <li>INSERT RULES HERE.</li>
+        </ul></li>
+        <li>Use shorthand when specifying multiple values. Remember longhand can be shorter for single values.</li>
+        <li>Multi-attribute selectors should go on separate lines.</li>
+        <li><p>Don't over qualify class or ID selectors. Leads to specificity issues further down the line.</p>
+        <pre><code>// Bad
+        div.content {}
+
+        // Good
+        .content {}</code></pre></li>
+        <li><p>0 requires no units</p>
+        <pre><code>// Good
+        .bar,
+        .foo[href=&quot;bar&quot;] {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+
+            padding: 10px 0 0 0;
+            margin: 10px 0;
+
+            background: red;
+            border-radius: 10px;
+            -moz-border-radius: 10px;
+        }</code></pre></li>
+        </ul>
+        <h2 id="indenting"><a name="section-css-indenting"></a> Indenting</h2>
+        <p>For each level of markup nesting, indent your CSS to match. For example:</p>
+        <pre><code>    nav {}
+                nav li {}
+                    nav li a {}
 
-          <h2>
-          <a name="overview" class="anchor" href="#overview"><span class="octicon octicon-link"></span></a>Overview</h2>
-
-          <p>This document details the guidelines and standards adhered to by the Creative Technology department at TMW, and all web applications built
-          should take these into consideration.  It is an evolving document and should be reviewed as and when required to keep up with changes in
-          technology and best practice.</p>
-
-          <p>These guidelines have been compiled looking at various previously written guidelines - credit goes to <a href="http://na.isobar.com/standards">Isobar</a>
-          and <a href="https://github.com/csswizardry/CSS-Guidelines/blob/master/CSS%20Guidelines.md">CSS Wizardry</a> both of which have been used as foundations
-          to build upon for this document, and in some sections been directly quoted.</p>
-
-          <h2>
-          <a name="contents" class="anchor" href="#contents"><span class="octicon octicon-link"></span></a>Contents</h2>
-
-
-          <ol>
-          <li><p><a href="#section-intro">General Guidelines</a></p>
-
-          <ol type="a">
-          <li><a href="#section-intro-indentation">Indentation</a></li>
-          </ol>
-
-
-          <p> ii. <a href="#section-intro-readability">Readability vs Compression</a></p></li>
-          <li><p><a href="#section-browsersupport">Browser Support</a></p></li>
-          <li><a href="#section-frameworks">Base Templates and frameworks</a></li>
-          <li><p><a href="#section-html">Markup</a></p>
-
-          <ol type="a">
-          <li><a href="#section-html-html5">HTML5</a></li>
-          </ol>
-
-
-          <p> ii. <a href="#section-html-general">General Markup Guidelines</a></p>
-
-          <p> iii. <a href="#section-html-attributes">Quoting Attributes</a></p>
-
-          <p> iv. <a href="#section-html-encoding">Character Encoding</a></p>
-
-          <ol type="a">
-          <li><a href="#section-html-accessibility">Accessibility</a></li>
-          </ol>
-          </li>
-          <li><p><a href="#section-css">CSS</a></p>
-
-          <ol type="a">
-          <li><a href="#section-css-general">General CSS Principles</a></li>
-          </ol>
-
-
-          <p> ii. <a href="#section-css-formatting">Syntax and formatting</a></p>
-
-          <p> iii. <a href="#section-css-indenting">Indenting</a></p>
-
-          <p> iv. <a href="#section-css-ocss">OOCSS</a></p>
-
-          <ol type="a">
-          <li><a href="#section-css-typography">Typography</a></li>
-          </ol>
-
-
-          <p> vi. <a href="#section-css-reset">Reset vs Normalisation</a></p>
-
-          <p> vii. <a href="#section-css-comments">Comments</a></p>
-
-          <p> viii. <a href="#section-css-specificity">Specificity, IDs and classes</a></p>
-
-          <p> ix. <a href="#section-css-conditionalstylesheets">Conditional Stylesheets</a></p>
-
-          <ol type="a">
-          <li><a href="#section-css-important">!important</a></li>
-          </ol>
-
-
-          <p> xi. <a href="#section-css-images">Images</a></p>
-
-          <p> xii. <a href="#section-css-debugging">Debugging</a></p>
-
-          <p> xiii. <a href="#section-css-preprocessors">Preprocessors</a></p>
-
-          <p> xiv. <a href="#section-css-tools">Tools</a></p></li>
-          <li><p><a href="#section-js">JavaScript</a></p>
-
-          <ol type="a">
-          <li><a href="#section-js-libraries">Libraries</a></li>
-          </ol>
-
-
-          <p> ii. <a href="#section-js-plugins">Plugins</a></p>
-
-          <p> iii. <a href="#section-js-general">General JavaScript Principles</a></p>
-
-          <p> iv. <a href="#section-js-formatting">Formatting and code sensibility</a></p>
-
-          <ol type="a">
-          <li><a href="#section-js-jquery">jQuery</a></li>
-          </ol>
-
-
-          <p> vi. <a href="#section-js-debugging">Debugging</a></p>
-
-          <p> vii. <a href="#section-js-resources">Resources</a></p></li>
-          <li><p><a href="#section-accessibility">Accessibility</a></p></li>
-          <li><a href="#section-performance">Performance and Optimisation</a></li>
-          </ol>
-          <hr>
-
-          <h1><a name="section-intro"></a> General Guidelines</h1>
-
-          <ul>
-          <li>All front-end code should display clear separation of presentation, content, and behaviour.</li>
-          <li>Markup should be well formed, semantically correct and generally valid.</li>
-          <li>JavaScript should progressively enhance the experience
-
-          <ul>
-          <li>Use feature detection rather than browser sniffing (edge cases such as performance are acceptable)</li>
-          </ul>
-          </li>
-          <li>Gracefully degrade functionality when not present (e.g GPS, box-shadow, forms etc).</li>
-          </ul>
-
-
-          <h2><a name="section-intro-indentation"></a> Indentation</h2>
-
-          <p>For all languages, indent your code with tabs.  The default tab size should be set as 4.</p>
-
-          <h2><a name="section-intro-readability"></a> Readability vs Compression</h2>
-
-          <p>We encourage readability over file-size when it comes to maintaining existing files. Plenty of white-space is encouraged, along with ASCII art, where appropriate. There is no need for any developer to purposefully compress HTML or CSS, nor obfuscate JavaScript.</p>
-
-          <p>We will use server-side or build processes to automatically minify and gzip all static client-side files, such as CSS and JavaScript.</p>
-
-          <hr />
-
-          <h1><a name="section-browsersupport"></a> Browser Support</h1>
-
-          <ul>
-          <li>Internet Explorer 7+</li>
-          <li>Firefox 3.6+</li>
-          <li>Google Chrome</li>
-          <li>Safari 5</li>
-          <li>Opera</li>
-          </ul>
-
-
-          <hr />
-
-          <h1><a name="section-frameworks"></a> Base Templates and frameworks</h1>
-
-          <p>We use <a href="http://tmwagency.github.io/kickoff/">Kickoff</a>, a lightweight front-end framework
-          we have put together for creating scalable, responsive sites.</p>
-
-          <p>When building static templates, we use <a href="http://tmwagency.github.io/kickoff/statix/index.html">Kickoff Statix</a>, which integrates Kickoff with Assemble to make templating faster and more maintainable.</p>
-
-          <p>Both Kickoff and Kickoff Statix are actively maintained by the Creative Tech team at TMW; for more information about their features, getting started and demos, see the <a href="http://tmwagency.github.io/kickoff/">Kickoff documentation site</a>.</p>
-
-          <hr />
-
-          <h1><a name="section-html"></a> Markup</h1>
-
-          <h2><a name="section-html-html5"></a> HTML5</h2>
-
-          <p>The HTML5 Doctype and HTML5 features will be used on projects when appropriate.</p>
-
-          <p>To ensure HTML5 markup compatibility with older browsers, use either:</p>
-
-          <ul>
-          <li><a href="http://www.modernizr.com/">Modernizr</a> - consider bloat, use the build generator to decrease its size</li>
-          <li><a href="http://code.google.com/p/html5shiv/">HTML5shiv</a> - no feature detection, simply ensures markup compatibility</li>
-          </ul>
-
-
-          <p>We will test our markup against the <a href="http://validator.w3.org/">W3C validator</a>, to ensure that the markup is well formed. 100% valid code is not a goal, but validation certainly helps to write more maintainable sites as well as debugging code. TMW does not guarantee markup is 100% valid, but instead assures the cross-browser experience is consistent.</p>
-
-          <h2><a name="section-html-general"></a> General Markup Guidelines</h2>
-
-          <p>The following are general guidelines for structuring your HTML markup. Authors are reminded to always use markup which represents the semantics of the content in the document being created.</p>
-
-          <ul>
-          <li>Use <code>&lt;p&gt;</code> elements for paragraph delimiters as opposed to multiple <code>&lt;br /&gt;</code> tags.</li>
-          <li>Items in list form should always be housed in a <code>&lt;ul&gt;</code>, <code>&lt;ol&gt;</code>, or <code>&lt;dl&gt;</code>, never a set of <code>&lt;div&gt;</code>s or <code>&lt;p&gt;</code>s.</li>
-          <li><p>Place an HTML comment around DIV tags that contain a larger amount of markup to indicate the element you're closing. It will help when there is a lot of nesting and indentation. For example:</p>
-
-          <pre><code>  &lt;!-- Start of .contentWrap --&gt;
-            &lt;div class="contentWrap"&gt;
-
-                //some markup goes here
-
-            &lt;/div&gt; &lt;!-- End of .contentWrap --&gt;
-          </code></pre></li>
-          <li><p>Make use of <code>&lt;thead&gt;</code>, <code>&lt;tbody&gt;</code>, and <code>&lt;th&gt;</code> tags (and <code>Scope</code> attribute) when appropriate.</p></li>
-          <li>Make use of <code>&lt;dl&gt;</code> (definition lists) and <code>&lt;blockquote&gt;</code>, when appropriate.</li>
-          <li>Use <code>&lt;label&gt;</code> fields to label each form field.  The <code>for</code> attribute should associate itself with the input field, so users can click the labels and obtain focus.</li>
-          <li>Do not use the <code>size</code> attribute on your input fields. The <code>size</code> attribute is relative to the font-size of the text inside the input. Instead use CSS width.</li>
-          <li>Always use title-case for headers and titles. Do not use all caps or all lowercase titles in markup, instead apply the CSS property <code>text-transform: uppercase/lowercase</code>.</li>
-          <li>Use microformats and/or Microdata where appropriate, specifically <code>hCard</code> and <code>adr</code>.</li>
-          </ul>
-
-
-          <p>...and the single most important rule...</p>
-
-          <ul>
-          <li>Tables <strong>shouldn't ever</strong> be used for page layout.</li>
-          </ul>
-
-
-          <h2><a name="section-html-attributes"></a> Quoting Attributes</h2>
-
-          <p>While the HTML5 specification defines quotes around attributes as optional for consistency with attributes that accept whitespace, all attributes should be quoted.</p>
-
-          <pre><code>&lt;a href="mylink.html" title="My Link Title" data-attribute="32"&gt;This is my Link&lt;/a&gt;
-          </code></pre>
-
-          <h2><a name="section-html-encoding"></a> Character Encoding</h2>
-
-          <p>All markup should be delivered as UTF-8, as it's the most friendly for internationalization. It should be designated in both the HTTP header and the head of the document.</p>
-
-          <p>Set the character set using <code>&lt;meta&gt;</code> tags:</p>
-
-          <pre><code>&lt;meta charset="utf-8"&gt;
-          </code></pre>
-
-          <h2><a name="section-html-accessibility"></a> Accessibility</h2>
-
-          <p>Consider ARIA integration for high accessibility sites.</p>
-
-          <p>For our full guidelines on Accessibility, refer to the <a href="#section-accessibility">Accessibility Guidelines</a> section of this document.</p>
-
-          <hr />
-
-          <h1><a name="section-css"></a> CSS</h1>
-
-          <h2><a name="section-css-general"></a> General CSS Principles</h2>
-
-          <ul>
-          <li>Every time you write inline styles in your markup, a front-end developer somewhere dies - whether it's in a style tag or directly in the markup. Don't do it.</li>
-          <li>Add CSS through external files, minimizing the number of files, if possible. CSS should always be included in the <code>&lt;head&gt;</code> of the document.</li>
-          <li>Use the <code>&lt;link&gt;</code> tag to include, never <code>@import</code>.</li>
-          <li>Ensure markup and style stays separate (some style classes are allowed, e.g imageReplace etc).  Only use style only markup if you absolutely have to (e.g extra wrapping elements); consider <code>:before</code> and <code>:after</code> CSS pseudo-elements if styles are not 100% necessary.</li>
-          </ul>
-
-
-          <h2><a name="section-css-formatting"></a> Syntax and formatting</h2>
-
-          <ul>
-          <li>Use multi-line CSS declarations. This helps with version control (diff-ing single line CSS can be a nightmare). Group CSS declarations by type - keeping font related styling together, layout styling together etc - and ordered by relevance, not alphabetized.</li>
-          <li>All CSS rules should have a space after the selector colon and a trailing semi-colon.</li>
-          <li>Selectors should be specified using a simplified version of BEM
-
-          <ul>
-          <li>INSERT RULES HERE.</li>
-          </ul>
-          </li>
-          <li>Use shorthand when specifying multiple values.  Remember longhand can be shorter for single values.</li>
-          <li>Multi-attribute selectors should go on separate lines.</li>
-          <li><p>Don't over qualify class or ID selectors.  Leads to specificity issues further down the line.</p>
-
-          <pre><code>  // Bad
-            div.content {}
-
-            // Good
             .content {}
-          </code></pre></li>
-          <li><p>0 requires no units</p>
+                .content p {}</code></pre>
+        <h2 id="oocss"><a name="section-css-ocss"></a> OOCSS</h2>
+        <p>When building components try and keep a DRY, OO frame of mind.</p>
+        <p>Instead of building dozens of unique components, try and spot repeated design patterns and abstract them; build these skeletons as base 'objects' and then peg classes onto these to extend their styling for more unique circumstances.</p>
+        <p>If you have to build a new component split it into structure and skin; build the structure of the component using very generic classes so that we can reuse that construct and then use more specific classes to skin it up and add design treatments.</p>
+        <p>Read: - <a href="http://csswizardry.com/2011/09/the-nav-abstraction/">The Nav Abstraction</a></p>
+        <h2 id="typography"><a name="section-css-typography"></a> Typography</h2>
+        <p><span class="citation" data-cites="font-face">@font-face</span> should be used for font replacement where possible - ensuring that the font can be safely used in .ttf format on the web in agreement with its licensing agreement. Where this is an issue, look to use tools such as <a href="https://typekit.com/">TypeKit</a> or <a href="http://fontdeck.com/">Fontdeck</a></p>
+        <p>To generate <span class="citation" data-cites="font-face">@font-face</span> files, the <a href="http://www.fontsquirrel.com/fontface/generator">Font Squirrel font-face generator</a> should be used.</p>
+        <p>JavaScript replacement techniques should be avoided where possible, as they are painful, time-consuming and usually inaccurate. Flash replacement techniques (such as Sifr) should never be used.</p>
+        <p>Always define <a href="http://csswizardry.com/2012/02/pragmatic-practical-font-sizing-in-css/">supporting font-size classes</a>, in conjunction with headers to avoid restyling header sizes.</p>
+        <h2 id="reset-vs-normalisation"><a name="section-css-reset"></a> Reset vs Normalisation</h2>
+        <p>There is no set preference to using a reset CSS file or using a normalisation technique, as long as consistency is applied throughout projects.</p>
+        <p>If a reset is preferred, the <a href="http://html5doctor.com/html-5-reset-stylesheet/">Eric Meyer reloaded reset</a> should be used.</p>
+        <p>For normalisation, the excellent <a href="http://necolas.github.com/normalize.css/">normalise.css</a> should be included.</p>
+        <p>Kickoff, which is used as a base for all of TMW‘s projects, chooses to implement normalisation by default, rather than a CSS reset.</p>
+        <h2 id="comments"><a name="section-css-comments"></a> Comments</h2>
+        <p>Comment as much as you can as often as you can. Where it might be useful, include a commented out piece of markup which can help put the current CSS into context.</p>
+        <p>CSS will be minified before it hits live servers, so don't worry about excessive commenting bloating code - the benefits far outweigh any file-size worries.</p>
+        <p>This is especially true for responsive layouts where percentage width/margin's have been worked out. Always comment in the ratio so that the resulting % values mean something to the next developer viewing your CSS. A random 6dp percentage will mean nothing to anyone else looking at your code.</p>
+        <p>e.g.</p>
+        <pre><code>    width: 34.042553% /* 320 / 940 */</code></pre>
+        <h2 id="specificity-ids-and-classes"><a name="section-css-specificity"></a> Specificity, IDs and classes</h2>
+        <p>CSS is designed to cascade, so make sure you understand <a href="http://www.stuffandnonsense.co.uk/archives/css_specificity_wars.html">cascading and selector specificity</a>. It will enable you to write very terse and effective code.</p>
+        <p>Use of IDs and classes effect specificity massively. Only use IDs where deemed necessary, especially on larger builds. Classes are much more modular and portable. If you want to use an ID solely as a JavaScript hook, consider using the ID alongside a class for CSS styling.</p>
+        <p>Name classes and IDs by the nature of <strong>what it is</strong> rather than what it looks like. A class of blueBox-left may seem relevant at the time, but should its colour or position change, it will become meaningless. Naming in conjunction with a more OOCSS approach should eliminate this ambiguity.</p>
+        <h2 id="conditional-stylesheets"><a name="section-css-conditionalstylesheets"></a> Conditional Stylesheets</h2>
+        <p>Stylesheets specific for Internet Explorer can, by and large, be totally avoided. The only time an IE stylesheet may be required is to circumvent blatant lack of support (e.g. media queries, PNG fixes).</p>
+        <p>As a general rule, all layout and box-model rules can and will work without an IE stylesheet if you refactor and rework your CSS. This means we never want to see <code>&lt;!--[if IE 7]&gt; element{ margin-left:-9px; } &lt; ![endif]--&gt;</code> or other such CSS that is clearly using arbitrary styling to just 'make stuff work'; it will hinder the maintainability of our CSS.</p>
+        <p>When building mobile first responsive websites, it is necessary to generate a separate stylesheet for old versions of IE to ensure they aren't left with the mobile version of your website because they cannot read media queries. This can be done using SASS and is covered in the <a href="#section-sass-mobilefirst">SASS – IE Stylesheet</a> section of this documentation.</p>
+        <p>If IE specific styling is required, look to utilise Paul Irish's <a href="http://paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/">body/html class conditional for IE* targeting</a>.</p>
+        <h2 id="important"><a name="section-css-important"></a> !important</h2>
+        <p>It is okay to use <code>!important</code> on helper classes only. To add <code>!important</code> pre-emptively is fine, e.g. .error { color:red!important }, as you know you will always want this rule to take precedence.</p>
+        <p>Using <code>!important</code> reactively, e.g. to get yourself out of nasty specificity situations, is not advised. Rework your CSS and try to combat these issues by refactoring your selectors. Keeping selectors short and avoiding IDs will help you out here massively.</p>
+        <h2 id="images"><a name="section-css-images"></a> Images</h2>
+        <p>It is hard to advise on a one size fits all solution for images currently. Instead there are a number of methods that should be considered and chosen from when approaching images in CSS.</p>
+        <p>CSS sprites can be very useful for combining the number of images on your site into a single HTTP request. <a href="http://www.spritecow.com/">Sprite Cow</a> is a great tool for generating the CSS required for positioning, as is <a href="http://spriteme.org/">SpriteMe</a> for generating a sprite out of the images used on your site.</p>
+        <p>Alternatively, converting your images to data URI's and including them in the CSS avoids HTTP requests entirely</p>
+        <p>Image names should use dashes and be named so that their use is clear i.e. icon-facebook-blue.png</p>
+        <h2 id="debugging"><a name="section-css-debugging"></a> Debugging</h2>
+        <p>If you run into a CSS problem take code away before you start adding more in a bid to fix it. The problem will exist in the CSS that is already written, more CSS isn't necessarily the right answer!</p>
+        <p>It can be tempting to put overflow:hidden; on something to hide the effects of a layout quirk, but overflow was probably never the problem; fix the problem, not its symptoms.</p>
+        <h2 id="preprocessors"><a name="section-css-preprocessors"></a> Preprocessors</h2>
+        <p>Use of a preprocessor should be used on a per project basis where it is deemed necessary.</p>
+        <p>Where a preprocessor is used, we shall use <a href="http://lesscss.org/">LESS</a>. The TMW base templates contain a set of LESS base files that should be used.</p>
+        <p>Be sure to know the ins-and-outs of excellent vanilla CSS and where a preprocessor can aid that, not hinder or undo it. Learn the downsides of preprocessors inside-out and then fuse the best aspects of the two with the bad bits of neither.</p>
+        <h2 id="responsive-design"><a name="section-css-rwd"></a> Responsive Design</h2>
+        <p>All work is considered in a responsive, mobile first, way unless the project dictates otherwise.</p>
+        <h2 id="tools"><a name="section-css-tools"></a> Tools</h2>
+        <ul>
+        <li><a href="http://procssor.com/">Procssor</a> - formats untidy CSS into indented loveliness</li>
+        </ul>
+        <hr />
+        <h1 id="sass"><a name="section-sass"></a> SASS</h1>
+        <!--##<a name="section-sass-mobilefirst"></a> Mobile first-->
 
-          <pre><code>  // Good
-            .bar,
-            .foo[href="bar"] {
-                position: absolute;
-                top: 0;
-                right: 0;
-                bottom: 0;
-                left: 0;
+        <p>Section being written</p>
+        <!--http://jakearchibald.github.io/sass-ie/-->
 
-                padding: 10px 0 0 0;
-                margin: 10px 0;
-
-                background: red;
-                border-radius: 10px;
-                -moz-border-radius: 10px;
+        <hr />
+        <h1 id="task-management-grunt"><a name="section-grunt"></a> Task Management – Grunt</h1>
+        <p>Section being written</p>
+        <hr />
+        <h1 id="javascript"><a name="section-js"></a> Javascript</h1>
+        <h2 id="libraries"><a name="section-js-libraries"></a> Libraries</h2>
+        <p>We develop all of our new applications using a mix of native JavaScript and <a href="http://jquery.com/">jQuery</a>. Always use the Google CDN to include jQuery as well as a local fallback should that not be available.</p>
+        <pre><code>&lt;script src=&quot;//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js&quot;&gt;&lt;/script&gt;
+        &lt;script&gt;window.jQuery || document.write(&#39;&lt;script src=&quot;js/libs/jquery-1.7.2.min.js&quot;&gt;&lt;\/script&gt;&#39;)&lt;/script&gt;</code></pre>
+        <h2 id="plugins"><a name="section-js-plugins"></a> Plugins</h2>
+        <p>We maintain an active wiki detailing the JavaScript and jQuery plugins we use for common use cases such as form validation, carousels and lightboxes. Any additions to this must first be added to the experimental list and then approved by at least 2 Members of the team.</p>
+        <p>All plugins should be added into the projects plugins.js and never included as a separate JS file, as it increases the number of page requests (page requests === bad).</p>
+        <h2 id="general-javascript-principles"><a name="section-js-general"></a> General JavaScript Principles</h2>
+        <ul>
+        <li>99% of JavaScript should be included in external JavaScript files and included at the END of the BODY tag. The only exception to this rule is <a href="http://modernizr.com/">Modernizr</a> which can be included at the end of the <code>&lt;head&gt;</code>.</li>
+        <li>Feature detect, don't browser detect. <a href="http://modernizr.com/">Modernizr</a> is a great resource for doing this.</li>
+        <li>Name variables and functions logically and in camelCase.</li>
+        <li>Prefix jQuery collection variables with the dollar (<code>$</code>) character e.g <code>$headerChildren</code></li>
+        <li>Class declarations should start with a capital letter.</li>
+        <li>Constants or configuration variables should be at the start of a class.</li>
+        <li>Global variables should be written in all caps - although avoid polluting the global namespace where possible</li>
+        <li><p>Build using the object literal pattern e.g.</p>
+        <pre><code>var BASENAME = {
+            init: function(){
+                this.$sections = $(&#39;#container section&#39;),
+                this.$additionalTextNodes = $(&#39;section a &gt; span&#39;)
+                this.createMarkup();
+            },
+            createMarkup: function(){
+                var $additionalTextNodes = this.$sections.remove();
+                &amp;additionalTextNodes.css({
+                    position: &#39;absolute&#39;,
+                    top: this.style.left - $sections[0].style.width / 2
+                })
             }
-          </code></pre></li>
-          </ul>
-
-
-          <h2><a name="section-css-indenting"></a> Indenting</h2>
-
-          <p>For each level of markup nesting, indent your CSS to match.  For example:</p>
-
-          <pre><code>    nav {}
-                  nav li {}
-                      nav li a {}
-
-              .content {}
-                  .content p {}
-          </code></pre>
-
-          <h2><a name="section-css-ocss"></a> OOCSS</h2>
-
-          <p>When building components try and keep a DRY, OO frame of mind.</p>
-
-          <p>Instead of building dozens of unique components, try and spot repeated design patterns and abstract them; build these skeletons as base 'objects' and then peg classes onto these to extend their styling for more unique circumstances.</p>
-
-          <p>If you have to build a new component split it into structure and skin; build the structure of the component using very generic classes so that we can reuse that construct and then use more specific classes to skin it up and add design treatments.</p>
-
-          <p>Read:
-          - <a href="http://csswizardry.com/2011/09/the-nav-abstraction/">The Nav Abstraction</a></p>
-
-          <h2><a name="section-css-typography"></a> Typography</h2>
-
-          <p>@font-face should be used for font replacement where possible - ensuring that the font can be safely used in .ttf format on the web in agreement with its licensing agreement.  Where this is an issue, look to use tools such as <a href="https://typekit.com/">TypeKit</a> or <a href="http://fontdeck.com/">Fontdeck</a></p>
-
-          <p>To generate @font-face files, the <a href="http://www.fontsquirrel.com/fontface/generator">Font Squirrel font-face generator</a> should be used.</p>
-
-          <p>JavaScript replacement techniques should be avoided where possible, as they are painful, time-consuming and usually inaccurate.  Flash replacement techniques (such as Sifr) should never be used.</p>
-
-          <p>Always define <a href="http://csswizardry.com/2012/02/pragmatic-practical-font-sizing-in-css/">supporting font-size classes</a>, in conjunction with headers to avoid restyling header sizes.</p>
-
-          <h2><a name="section-css-reset"></a> Reset vs Normalisation</h2>
-
-          <p>There is no set preference to using a reset CSS file or using a normalisation technique, as long as consistency is applied throughout projects.</p>
-
-          <p>If a reset is preferred, the <a href="http://html5doctor.com/html-5-reset-stylesheet/">Eric Meyer reloaded reset</a> should be used.</p>
-
-          <p>For normalisation, the excellent <a href="http://necolas.github.com/normalize.css/">normalise.css</a> should be included.</p>
-
-          <p>Kickoff, which is used as a base for all of TMW‘s projects, chooses to implement normalisation by default, rather than a CSS reset.</p>
-
-          <h2><a name="section-css-comments"></a> Comments</h2>
-
-          <p>Comment as much as you can as often as you can. Where it might be useful, include a commented out piece of markup which can help put the current CSS into context.</p>
-
-          <p>CSS will be minified before it hits live servers, so don't worry about excessive commenting bloating code - the benefits far outweigh any file-size worries.</p>
-
-          <p>This is especially true for responsive layouts where percentage width/margin's have been worked out.  Always comment in the ratio so that the resulting % values mean something to the next developer viewing your CSS.  A random 6dp percentage will mean nothing to anyone else looking at your code.</p>
-
-          <p>e.g.</p>
-
-          <pre><code>    width: 34.042553% /* 320 / 940 */
-          </code></pre>
-
-          <h2><a name="section-css-specificity"></a> Specificity, IDs and classes</h2>
-
-          <p>CSS is designed to cascade, so make sure you understand <a href="http://www.stuffandnonsense.co.uk/archives/css_specificity_wars.html">cascading and selector specificity</a>.  It will enable you to write very terse and effective code.</p>
-
-          <p>Use of IDs and classes effect specificity massively.  Only use IDs where deemed necessary, especially on larger builds.  Classes are much more modular and portable.  If you want to use an ID solely as a JavaScript hook, consider using the ID alongside a class for CSS styling.</p>
-
-          <p>Name classes and IDs by the nature of <strong>what it is</strong> rather than what it looks like. A class of blueBox-left may seem relevant at the time, but should its colour or position change, it will become meaningless.  Naming in conjunction with a more OOCSS approach should eliminate this ambiguity.</p>
-
-          <h2><a name="section-css-conditionalstylesheets"></a> Conditional Stylesheets</h2>
-
-          <p>Stylesheets specific for Internet Explorer can, by and large, be totally avoided. The only time an IE stylesheet may be required is to circumvent blatant lack of support (e.g. media queries, PNG fixes).</p>
-
-          <p>As a general rule, all layout and box-model rules can and will work without an IE stylesheet if you refactor and rework your CSS. This means we never want to see <code>&lt;!--[if IE 7]&gt; element{ margin-left:-9px; } &lt; ![endif]--&gt;</code> or other such CSS that is clearly using arbitrary styling to just 'make stuff work'; it will hinder the maintainability of our CSS.</p>
-
-          <p>When building mobile first responsive websites, it is necessary to generate a separate stylesheet for old versions of IE to ensure they aren't left with the mobile version of your website because they cannot read media queries.  This can be done using SASS and is covered in the <a href="#section-sass-mobilefirst">SASS – IE Stylesheet</a> section of this documentation.</p>
-
-          <p>If IE specific styling is required, look to utilise Paul Irish's <a href="http://paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/">body/html class conditional for IE* targeting</a>.</p>
-
-          <h2><a name="section-css-important"></a> !important</h2>
-
-          <p>It is okay to use <code>!important</code> on helper classes only. To add <code>!important</code> pre-emptively is fine, e.g. .error { color:red!important }, as you know you will always want this rule to take precedence.</p>
-
-          <p>Using <code>!important</code> reactively, e.g. to get yourself out of nasty specificity situations, is not advised. Rework your CSS and try to combat these issues by refactoring your selectors. Keeping selectors short and avoiding IDs will help you out here massively.</p>
-
-          <h2><a name="section-css-images"></a> Images</h2>
-
-          <p>It is hard to advise on a one size fits all solution for images currently.  Instead there are a number of methods that should be considered and chosen from when approaching images in CSS.</p>
-
-          <p>CSS sprites can be very useful for combining the number of images on your site into a single HTTP request. <a href="http://www.spritecow.com/">Sprite Cow</a> is a great tool for generating the CSS required for positioning, as is <a href="http://spriteme.org/">SpriteMe</a> for generating a sprite out of the images used on your site.</p>
-
-          <p>Alternatively, converting your images to data URI's and including them in the CSS avoids HTTP requests entirely</p>
-
-          <p>Image names should use dashes and be named so that their use is clear i.e. icon-facebook-blue.png</p>
-
-          <h2><a name="section-css-debugging"></a> Debugging</h2>
-
-          <p>If you run into a CSS problem take code away before you start adding more in a bid to fix it. The problem will exist in the CSS that is already written, more CSS isn't necessarily the right answer!</p>
-
-          <p>It can be tempting to put overflow:hidden; on something to hide the effects of a layout quirk, but overflow was probably never the problem; fix the problem, not its symptoms.</p>
-
-          <h2><a name="section-css-preprocessors"></a> Preprocessors</h2>
-
-          <p>Use of a preprocessor should be used on a per project basis where it is deemed necessary.</p>
-
-          <p>Where a preprocessor is used, we shall use <a href="http://lesscss.org/">LESS</a>.  The TMW base templates contain a set of LESS base files that should be used.</p>
-
-          <p>Be sure to know the ins-and-outs of excellent vanilla CSS and where a preprocessor can aid that, not hinder or undo it. Learn the downsides of preprocessors inside-out and then fuse the best aspects of the two with the bad bits of neither.</p>
-
-          <h2><a name="section-css-rwd"></a> Responsive Design</h2>
-
-          <p>All work is considered in a responsive, mobile first, way unless the project dictates otherwise.</p>
-
-          <h2><a name="section-css-tools"></a> Tools</h2>
-
-          <ul>
-          <li><a href="http://procssor.com/">Procssor</a> - formats untidy CSS into indented loveliness</li>
-          </ul>
-
-
-          <hr />
-
-          <h1><a name="section-sass"></a> SASS</h1>
-
-          <!--##<a name="section-sass-mobilefirst"></a> Mobile first-->
-
-
-          <p>Section being written</p>
-
-          <!--http://jakearchibald.github.io/sass-ie/-->
-
-
-          <hr />
-
-          <h1><a name="section-grunt"></a> Task Management – Grunt</h1>
-
-          <p>Section being written</p>
-
-          <hr />
-
-          <h1><a name="section-js"></a> Javascript</h1>
-
-          <h2><a name="section-js-libraries"></a> Libraries</h2>
-
-          <p>We develop all of our new applications using a mix of native JavaScript and <a href="http://jquery.com/">jQuery</a>.  Always use the Google CDN to include jQuery as well as a local fallback should that not be available.</p>
-
-          <pre><code>&lt;script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"&gt;&lt;/script&gt;
-          &lt;script&gt;window.jQuery || document.write('&lt;script src="js/libs/jquery-1.7.2.min.js"&gt;&lt;\/script&gt;')&lt;/script&gt;
-          </code></pre>
-
-          <h2><a name="section-js-plugins"></a> Plugins</h2>
-
-          <p>We maintain an active wiki detailing the JavaScript and jQuery plugins we use for common use cases such as form validation, carousels and lightboxes.  Any additions to this must first be added to the experimental list and then approved by at least 2 Members of the team.</p>
-
-          <p>All plugins should be added into the projects plugins.js and never included as a separate JS file, as it increases the number of page requests (page requests === bad).</p>
-
-          <h2><a name="section-js-general"></a> General JavaScript Principles</h2>
-
-          <ul>
-          <li>99% of JavaScript should be included in external JavaScript files and included at the END of the BODY tag.  The only exception to this rule is <a href="http://modernizr.com/">Modernizr</a> which can be included at the end of the <code>&lt;head&gt;</code>.</li>
-          <li>Feature detect, don't browser detect.  <a href="http://modernizr.com/">Modernizr</a> is a great resource for doing this.</li>
-          <li>Name variables and functions logically and in camelCase.</li>
-          <li>Prefix jQuery collection variables with the dollar (<code>$</code>) character e.g <code>$headerChildren</code></li>
-          <li>Class declarations should start with a capital letter.</li>
-          <li>Constants or configuration variables should be at the start of a class.</li>
-          <li>Global variables should be written in all caps - although avoid polluting the global namespace where possible</li>
-          <li><p>Build using the object literal pattern e.g.</p>
-
-          <pre><code>  var BASENAME = {
-                init: function(){
-                    this.$sections = $('#container section'),
-                    this.$additionalTextNodes = $('section a &gt; span')
-                    this.createMarkup();
-                },
-                createMarkup: function(){
-                    var $additionalTextNodes = this.$sections.remove();
-                    &amp;additionalTextNodes.css({
-                        position: 'absolute',
-                        top: this.style.left - $sections[0].style.width / 2
-                    })
-                }
-            }
-            BASENAME.init();
-          </code></pre></li>
-          <li><p>Structure and formatting should follow the example below:</p>
-
-          <pre><code>  $(function(){
-                //globals here, in CAPS
-
-                var SiteSetup = {
-                    animationSpeed: 100,
-
-                    init : function () {
-                        //fire off all other classes
-                        if (LightBox.$lightbox.length &gt; 0) {
-                            LightBox.init();
-                        }
+        }
+        BASENAME.init();</code></pre></li>
+        <li><p>Structure and formatting should follow the example below:</p>
+        <pre><code>$(function(){
+            //globals here, in CAPS
+
+            var SiteSetup = {
+                animationSpeed: 100,
+
+                init : function () {
+                    //fire off all other classes
+                    if (LightBox.$lightbox.length &gt; 0) {
+                        LightBox.init();
                     }
-                },
-                LightBox = {
-                    $lightbox: $('.lightbox'),
+                }
+            },
+            LightBox = {
+                $lightbox: $(&#39;.lightbox&#39;),
 
-                    init : function () {},
-                    open : function () {},
-                    close : function () {}
-                };
+                init : function () {},
+                open : function () {},
+                close : function () {}
+            };
 
-                SiteSetup.init();
-            });
-          </code></pre></li>
-          <li><p>Documentation should follow <a href="http://www.naturaldocs.org/documenting.html">NaturalDocs</a> structure.  As with all code, document as frequently as you can - the more detail the better.  At the very least, document each function you create.</p></li>
-          </ul>
+            SiteSetup.init();
+        });</code></pre></li>
+        <li><p>Documentation should follow <a href="http://www.naturaldocs.org/documenting.html">NaturalDocs</a> structure. As with all code, document as frequently as you can - the more detail the better. At the very least, document each function you create.</p></li>
+        </ul>
+        <p><strong>Read: </strong> <a href="http://net.tutsplus.com/tutorials/javascript-ajax/the-essentials-of-writing-high-quality-javascript/">The Essentials of Writing High Quality JavaScript</a></p>
+        <h2 id="formatting-and-code-sensibility"><a name="section-js-formatting"></a> Formatting and code sensibility</h2>
+        <ul>
+        <li><p>Separate operators/comparators with spacing</p>
+        <pre><code>// Good
+        if (foo &amp;&amp; foo.bar &amp;&amp; typeof foo.bar === &#39;object&#39;) {
+            foo.bar.call();
+        }
 
+        // Terrible
+        if(foo&amp;&amp;foo.bar&amp;&amp;typeof foo.bar===&#39;object&#39;){
+            foo.bar.call();
+        }</code></pre></li>
+        <li><p>Use braces for logic evaluations. If evaluation execution is simple, keep non-braced logic on a single line e.g:</p>
+        <pre><code>// Good
+        if (i &lt; 10) return true;
 
-          <p><strong>Read: </strong>
-          <a href="http://net.tutsplus.com/tutorials/javascript-ajax/the-essentials-of-writing-high-quality-javascript/">The Essentials of Writing High Quality JavaScript</a></p>
+        // Good
+        if(foo &amp;&amp; foo.bar &amp;&amp; foo.bar &gt; 10) {
+            foo.baz = foo.bar - 100 * 2.7 + &#39;rad&#39;
+        }
 
-          <h2><a name="section-js-formatting"></a> Formatting and code sensibility</h2>
+        // Bad
+        if(foo &amp;&amp; foo.bar &amp;&amp; foo.bar &gt; 10)
+            foo.baz = foo.bar - 100 * 2.7 + &#39;rad&#39;
 
-          <ul>
-          <li><p>Separate operators/comparators with spacing</p>
+        // Bad
+        if(i &lt; 10)
+            return true;
 
-          <pre><code>  // Good
-            if (foo &amp;&amp; foo.bar &amp;&amp; typeof foo.bar === 'object') {
-                foo.bar.call();
-            }
+        // Bad
+        if(i &lt; 10)
+        {
+            return true;
+        }</code></pre></li>
+        <li>Remap this to self when passing context</li>
+        <li>Always use <code>===</code> as a comparator (unless you really need flexible evaluations e.g comparison to null)</li>
+        <li>Always add a second radix param to parseInt() to prevent accidental octal issues</li>
+        <li>Never bother comparing variables to <code>true</code>/<code>false</code></li>
+        <li>For large loops, either cache the length variable to prevent re-evaluation or use a reverse while loop</li>
+        <li>Don't create functions in loops - its slow (and stupid)</li>
+        <li>When creating functions with many parameters, pass in an object rather than listing numerous parameters.
+        <ul>
+        <li>use <code>$.extend</code> if you are using jQuery to extend a passed in object while providing defaults</li>
+        </ul></li>
+        <li><p>If possible, avoid using bitwise operations unless they really help. If used, document them with comments</p>
+        <pre><code>// inverting bits to ease comparison to -1
+        if (~foo.bar.indexOf(&#39;leetness&#39;)){
+            alert(&#39;w00t!&#39;)
+        }</code></pre></li>
+        </ul>
+        <h2 id="jquery"><a name="section-js-jquery"></a> jQuery</h2>
+        <ul>
+        <li>Always cache DOM selection if you plan to re-use data</li>
+        <li>Use efficient query selectors, write for many browsers, don't assume document.querySelector()</li>
+        <li>Avoid using $.each for repeated or performance critical functionality, and instead use a for or reverse while loop (especially for large objects)</li>
+        <li>Use <code>on()</code> and <code>off()</code> handlers for events. Everything else is now depreciated (live, delegate, bind)</li>
+        <li>When using simple html5 attribute data, simply use <code>$selected.attr('data-foo')</code> unless working with complex data types (where you can use <code>$selected.data()</code>)</li>
+        <li>Try to understand the underlying JavaScript functionality of jQuery methods. This will help you write much more efficient selectors (watch Paul Irish's talk - <a href="http://paulirish.com/2010/10-things-i-learned-from-the-jquery-source/">10 Things I Learned from the jQuery Source</a>)</li>
+        </ul>
+        <h2 id="debugging-1"><a name="section-js-debugging"></a> Debugging</h2>
+        <p>Learn how to use your browser tools properly as it will save you hours in debugging.</p>
+        <p>If you're using <code>alert()</code> you're doing it wrong. Use <code>console.log()</code>, or <a href="http://paulirish.com/2009/log-a-lightweight-wrapper-for-consolelog/">Paul Irish's lightweight wrapper</a></p>
+        <h2 id="dependency-management"><a name="section-js-dependencies"></a> Dependency Management</h2>
+        <p>Section being written</p>
+        <h2 id="resources"><a name="section-js-resources"></a> Resources</h2>
+        <p>Section being written</p>
+        <!--
+        1. Forms:
+            - Uniform
+        2. jQuery Tools
+        3. Ender.js
+        4. Require.js
+        5. Browserify
 
-            // Terrible
-            if(foo&amp;&amp;foo.bar&amp;&amp;typeof foo.bar==='object'){
-                foo.bar.call();
-            }
-          </code></pre></li>
-          <li><p>Use braces for logic evaluations.  If evaluation execution is simple, keep non-braced logic on a single line e.g:</p>
-
-          <pre><code>  // Good
-            if (i &lt; 10) return true;
-
-            // Good
-            if(foo &amp;&amp; foo.bar &amp;&amp; foo.bar &gt; 10) {
-                foo.baz = foo.bar - 100 * 2.7 + 'rad'
-            }
-
-            // Bad
-            if(foo &amp;&amp; foo.bar &amp;&amp; foo.bar &gt; 10)
-                foo.baz = foo.bar - 100 * 2.7 + 'rad'
-
-            // Bad
-            if(i &lt; 10)
-                return true;
-
-            // Bad
-            if(i &lt; 10)
-            {
-                return true;
-            }
-          </code></pre></li>
-          <li><p>Remap this to self when passing context</p></li>
-          <li>Always use <code>===</code> as a comparator (unless you really need flexible evaluations e.g comparison to null)</li>
-          <li>Always add a second radix param to parseInt() to prevent accidental octal issues</li>
-          <li>Never bother comparing variables to <code>true</code>/<code>false</code></li>
-          <li>For large loops, either cache the length variable to prevent re-evaluation or use a reverse while loop</li>
-          <li>Don't create functions in loops - its slow (and stupid)</li>
-          <li>When creating functions with many parameters, pass in an object rather than listing numerous parameters.
-
-          <ul>
-          <li>use <code>$.extend</code> if you are using jQuery to extend a passed in object while providing defaults</li>
-          </ul>
-          </li>
-          <li><p>If possible, avoid using bitwise operations unless they really help. If used, document them with comments</p>
-
-          <pre><code>  // inverting bits to ease comparison to -1
-            if (~foo.bar.indexOf('leetness')){
-                alert('w00t!')
-            }
-          </code></pre></li>
-          </ul>
-
-
-          <h2><a name="section-js-jquery"></a> jQuery</h2>
-
-          <ul>
-          <li>Always cache DOM selection if you plan to re-use data</li>
-          <li>Use efficient query selectors, write for many browsers, don't assume document.querySelector()</li>
-          <li>Avoid using $.each for repeated or performance critical functionality, and instead use a for or reverse while loop (especially for large objects)</li>
-          <li>Use <code>on()</code> and <code>off()</code> handlers for events.  Everything else is now depreciated (live, delegate, bind)</li>
-          <li>When using simple html5 attribute data, simply use <code>$selected.attr('data-foo')</code> unless working with complex data types (where you can use <code>$selected.data()</code>)</li>
-          <li>Try to understand the underlying JavaScript functionality of jQuery methods.  This will help you write much more efficient selectors (watch Paul Irish's talk - <a href="http://paulirish.com/2010/10-things-i-learned-from-the-jquery-source/">10 Things I Learned from the jQuery Source</a>)</li>
-          </ul>
-
-
-          <h2><a name="section-js-debugging"></a> Debugging</h2>
-
-          <p>Learn how to use your browser tools properly as it will save you hours in debugging.</p>
-
-          <p>If you're using <code>alert()</code> you're doing it wrong.  Use <code>console.log()</code>, or <a href="http://paulirish.com/2009/log-a-lightweight-wrapper-for-consolelog/">Paul Irish's lightweight wrapper</a></p>
-
-          <h2><a name="section-js-dependencies"></a> Dependency Management</h2>
-
-          <p>Section being written</p>
-
-          <h2><a name="section-js-resources"></a> Resources</h2>
-
-          <p>Section being written</p>
-
-          <!--
-          1. Forms:
-              - Uniform
-          2. jQuery Tools
-          3. Ender.js
-          4. Require.js
-          5. Browserify
-
-          This list will eventually go on a separate wiki detailing more specific plugin information.
-          -->
-
-
-          <hr />
-
-          <h2><a name="section-accessibility"></a> Accessibility</h2>
-
-          <p>For accessibility testing, consider using one of the following:</p>
-
-          <ul>
-          <li><a href="http://wave.webaim.org/">Wave Accessibility tester</a></li>
-          </ul>
-
-
-          <hr />
-
-          <h2><a name="section-performance"></a> Performance and Optimisation</h2>
-
-          <p>Section being written</p>
+        This list will eventually go on a separate wiki detailing more specific plugin information.
+        -->
+        <hr />
+        <h2 id="accessibility-1"><a name="section-accessibility"></a> Accessibility</h2>
+        <p>For accessibility testing, consider using one of the following:</p>
+        <ul>
+        <li><a href="http://wave.webaim.org/">Wave Accessibility tester</a></li>
+        </ul>
+        <hr />
+        <h2 id="performance-and-optimisation"><a name="section-performance"></a> Performance and Optimisation</h2>
+        <p>Section being written</p>
       </section>
     </div>
 
