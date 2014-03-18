@@ -327,6 +327,7 @@ div.content {}
 <p>CSS is designed to cascade, so make sure you understand <a href="http://www.stuffandnonsense.co.uk/archives/css_specificity_wars.html">cascading and selector specificity</a>. It will enable you to write very terse and effective code.</p>
 <p>Use of IDs and classes effect specificity massively. Only use IDs where deemed necessary, especially on larger builds. Classes are much more modular and portable. If you want to use an ID solely as a JavaScript hook, consider using the ID alongside a class for CSS styling.</p>
 <p>Name classes and IDs by the nature of <strong>what it is</strong> rather than what it looks like. A class of blueBox-left may seem relevant at the time, but should its colour or position change, it will become meaningless. Naming in conjunction with a more OOCSS approach should eliminate this ambiguity.</p>
+<p><strong>Read:</strong> <a href="http://csswizardry.com/2012/07/shoot-to-kill-css-selector-intent/">Shoot to kill – CSS Selector Intent</a></p>
 <h2 id="conditional-stylesheets"><a name="section-css-conditionalstylesheets"></a> Conditional Stylesheets</h2>
 <p>Stylesheets specific for Internet Explorer can, by and large, be totally avoided. The only time an IE stylesheet may be required is to circumvent blatant lack of support (e.g. media queries, PNG fixes).</p>
 <p>As a general rule, all layout and box-model rules can and will work without an IE stylesheet if you refactor and rework your CSS. This means we never want to see <code>&lt;!--[if IE 7]&gt; element{ margin-left:-9px; } &lt; ![endif]--&gt;</code> or other such CSS that is clearly using arbitrary styling to just 'make stuff work'; it will hinder the maintainability of our CSS.</p>
@@ -335,31 +336,83 @@ div.content {}
 <h2 id="important"><a name="section-css-important"></a> !important</h2>
 <p>It is okay to use <code>!important</code> on helper classes only. To add <code>!important</code> pre-emptively is fine, e.g. .error { color:red!important }, as you know you will always want this rule to take precedence.</p>
 <p>Using <code>!important</code> reactively, e.g. to get yourself out of nasty specificity situations, is not advised. Rework your CSS and try to combat these issues by refactoring your selectors. Keeping selectors short and avoiding IDs will help you out here massively.</p>
+<h2 id="magic-numbers-and-absolutes"><a name="section-css-magicnumbers"></a> Magic numbers and absolutes</h2>
+<p>A magic number is a number which is used because ‘it just works’. These are bad because they rarely work for any real reason and are not usually very futureproof or flexible/forgiving. They tend to fix symptoms and not problems.</p>
+<p>For example, using .dropdown-nav li:hover ul { top: 37px; } to move a dropdown to the bottom of the nav on hover is bad, as 37px is a magic number. 37px only works here because in this particular scenario the .dropdown-nav happens to be 37px tall.</p>
+<p>Instead you should use .dropdown-nav li:hover ul { top: 100%; } which means no matter how tall the .dropdown-nav gets, the dropdown will always sit 100% from the top.</p>
+<p>Every time you hard code a number think twice; if you can avoid it by using keywords or ‘aliases’ (i.e. top: 100% to mean ‘all the way from the top’) or—even better—no measurements at all then you probably should.</p>
+<p>Every hard-coded measurement you set is a commitment you might not necessarily want to keep.</p>
 <h2 id="images"><a name="section-css-images"></a> Images</h2>
-<p>It is hard to advise on a one size fits all solution for images currently. Instead there are a number of methods that should be considered and chosen from when approaching images in CSS.</p>
-<p>CSS sprites can be very useful for combining the number of images on your site into a single HTTP request. <a href="http://www.spritecow.com/">Sprite Cow</a> is a great tool for generating the CSS required for positioning, as is <a href="http://spriteme.org/">SpriteMe</a> for generating a sprite out of the images used on your site.</p>
-<p>Alternatively, converting your images to data URI's and including them in the CSS avoids HTTP requests entirely</p>
 <p>Image names should use dashes and be named so that their use is clear i.e. icon-facebook-blue.png</p>
+<p>It is hard to advise on a one size fits all solution for images currently. Instead there are a number of methods that should be considered and chosen from when approaching images in CSS.</p>
+<p>CSS sprites can be very useful for combining the number of images on your site into a single HTTP request. Sprites work in every browser, although care should be taken when including large sprites on mobile devices as memory limits can be reached when large image files are used. <a href="http://www.spritecow.com/">Sprite Cow</a> is a great tool for generating the CSS required for positioning, as is <a href="http://spriteme.org/">SpriteMe</a> for generating a sprite out of the images used on your site.</p>
+<p>Alternatively, converting your images to data URI's and including them in the CSS avoids HTTP requests entirely. This is however at the expense of older browser support, <a href="http://caniuse.com/datauri">namely Internet Explorer 7 and earlier</a>.</p>
+<p>At TMW, we currently use a combination of <a href="https://github.com/filamentgroup/grunticon">GruntIcon</a>, and data-uris, but this is reviewed on a project-by-project basis.</p>
 <h2 id="debugging"><a name="section-css-debugging"></a> Debugging</h2>
-<p>If you run into a CSS problem take code away before you start adding more in a bid to fix it. The problem will exist in the CSS that is already written, more CSS isn't necessarily the right answer!</p>
+<p>If you run into a CSS problem, take code away before you start adding more in a bid to fix it. The problem will exist in the CSS that is already written, more CSS isn't necessarily the right answer!</p>
 <p>It can be tempting to put overflow:hidden; on something to hide the effects of a layout quirk, but overflow was probably never the problem; fix the problem, not its symptoms.</p>
 <h2 id="preprocessors"><a name="section-css-preprocessors"></a> Preprocessors</h2>
 <p>Use of a preprocessor should be used on a per project basis where it is deemed necessary.</p>
-<p>Where a preprocessor is used, we shall use <a href="http://lesscss.org/">LESS</a>. The TMW base templates contain a set of LESS base files that should be used.</p>
+<p>Where a preprocessor is used, we shall use <a href="http://sass-lang.com/">Sass</a>. Kickoff, the TMW base framework, contains a set of Sass base files that should be used.</p>
 <p>Be sure to know the ins-and-outs of excellent vanilla CSS and where a preprocessor can aid that, not hinder or undo it. Learn the downsides of preprocessors inside-out and then fuse the best aspects of the two with the bad bits of neither.</p>
+<p>For more specific guidelines on using Sass, read the <a href="#section-sass">Sass section of these guidelines</a>.</p>
 <h2 id="responsive-design"><a name="section-css-rwd"></a> Responsive Design</h2>
 <p>All work is considered in a responsive, mobile first, way unless the project dictates otherwise.</p>
+<p>Responsive design isn't just a way of developing, it is a way of thinking that needs to flow through the entire site development process from content, UX, design and development.</p>
+<p>It is recommended to read Ethan Marcotte's excellent book, <a href="http://www.abookapart.com/products/responsive-web-design">Responsive Web Design</a> as well as the related <a href="http://alistapart.com/article/responsive-web-design/">A List Apart article on the subject</a>.</p>
+<p>It is out of the scope of this document to go through the specifics of developing responsively, but some suggested techniques that we use during development are talked about in <a href="#section-sass-mobilefirst">Sass – Mobile First</a>.</p>
 <h2 id="tools"><a name="section-css-tools"></a> Tools</h2>
 <ul>
 <li><a href="http://procssor.com/">Procssor</a> - formats untidy CSS into indented loveliness</li>
 </ul>
 <hr />
-<h1 id="sass"><a name="section-sass"></a> SASS</h1>
-<!--##<a name="section-sass-mobilefirst"></a> Mobile first-->
+<h1 id="sass"><a name="section-sass"></a> Sass</h1>
+<h2 id="general-sass-principles"><a name="section-sass-general"></a> General Sass Principles</h2>
+<ul>
+<li>Be sure to know the ins-and-outs of excellent vanilla CSS and where a preprocessor can aid that, not hinder or undo it. Learn the downsides of preprocessors inside-out and then fuse the best aspects of the two with the bad bits of neither.</li>
+</ul>
+<h2 id="nesting"><a name="section-sass-nesting"></a> Nesting</h2>
+<p>When nesting selectors, try not to nest more than 3 levels deep. If you find yourself writing deeply nested selectors, it is usually a sign that you should rethink how you have structured your markup or class declarations.</p>
+<p>Nest only when it would actually be necessary in vanilla CSS, e.g.</p>
+<pre><code>    .header {}
+    .header .site-nav {}
+    .header .site-nav li {}
+    .header .site-nav li a {}</code></pre>
+<p>Would be wholly unnecessary in normal CSS, so the following would be bad Sass:</p>
+<pre><code>    .header {
+        .site-nav {
+            li {
+                a {}
+            }
+        }
+    }</code></pre>
+<p>If you were to write this in Sass, it would look more like:</p>
+<pre><code>    .header {}
+    .site-nav {
+        li {}
+        a {}
+    }</code></pre>
+<h2 id="extends"><a name="section-sass-extends"></a> <span class="citation" data-cites="extends">@extends</span></h2>
+<p>Use caution when using the <span class="citation" data-cites="extends">@extends</span> operator. It can give unexpected results in the compiled CSS when used too liberally and can usually be avoided simply by using classes to extend styling in a more modular fashion.</p>
+<p>For example, rather than writing the following:</p>
+<pre><code>    .section-centered {
+        display: block;
+        margin: 0 auto;
+    }
 
-<p>Section being written</p>
-<!--http://jakearchibald.github.io/sass-ie/-->
-
+    .masthead {
+        @extends .section-centered;
+    }</code></pre>
+<p>Simply add the class to the masthead markup instead:</p>
+<pre><code>    &lt;div class=&quot;masthead section-centered&quot;&gt;
+        …
+    &lt;/div&gt;</code></pre>
+<p>Doing this will help to keep your styling modular and more reusable.</p>
+<p>The most useful use case for <span class="citation" data-cites="extends">@extends</span> is when you don't have complete control over your markup, such as when you are constrained by certain CMS and cannot add additional classes to your markup.</p>
+<h2 id="mobile-first"><a name="section-sass-mobilefirst"></a> Mobile first</h2>
+<p>In almost all cases, sites should be built mobile first, specifiying the mobile styles as your base CSS and adding media queries to progressively enhance the experience for larger width devices and screens.</p>
+<p>The problem with doing this is that Internet Explorer versions 8 and earlier doesn't support media queries and so will only see our mobile styles. There is a way of solving this problem using JavaScript, but the preferred solution is to solve the problem using Sass.</p>
+<p><a href="http://jakearchibald.github.io/sass-ie/">Jake Archibald wrote about this solution</a> which uses Sass to generate two stylesheets, a fixed width stylesheet which is conditionally loaded for IE8 and below, and a separate stylesheet for all other browsers. This solution is built into our front-end framework Kickoff.</p>
 <hr />
 <h1 id="task-management-grunt"><a name="section-grunt"></a> Task Management – Grunt</h1>
 <p>Section being written</p>
@@ -509,5 +562,6 @@ This list will eventually go on a separate wiki detailing more specific plugin i
 <hr />
 <h2 id="performance-and-optimisation"><a name="section-performance"></a> Performance and Optimisation</h2>
 <p>Section being written</p>
+
 </body>
 </html>
