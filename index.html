@@ -296,8 +296,8 @@
 				li {}
 				a {}
 			}</code></pre>
-		<h2 id="extends"><a name="section-sass-extends"></a> <span class="citation" data-cites="extends">@extends</span></h2>
-		<p>Use caution when using the <span class="citation" data-cites="extends">@extends</span> operator. It can give unexpected results in the compiled CSS when used too liberally and can usually be avoided simply by using classes to extend styling in a more modular fashion.</p>
+		<h2 id="extend"><a name="section-sass-extend"></a> <span class="citation" data-cites="extend">@extend</span></h2>
+		<p>Use caution when using the <span class="citation" data-cites="extend">@extend</span> operator. It can give unexpected results in the compiled CSS when used too liberally and can usually be avoided simply by using classes to extend styling in a more modular fashion.</p>
 		<p>For example, rather than writing the following:</p>
 		<pre><code>    .section-centered {
 				display: block;
@@ -305,14 +305,14 @@
 			}
 
 			.masthead {
-				@extends .section-centered;
+				@extend .section-centered;
 			}</code></pre>
 		<p>Simply add the class to the masthead markup instead:</p>
 		<pre><code>    &lt;div class=&quot;masthead section-centered&quot;&gt;
 				…
 			&lt;/div&gt;</code></pre>
 		<p>Doing this will help to keep your styling modular and more reusable.</p>
-		<p>The most useful use case for <span class="citation" data-cites="extends">@extends</span> is when you don't have complete control over your markup, such as when you are constrained by certain CMS and cannot add additional classes to your markup.</p>
+		<p>The most useful use case for <span class="citation" data-cites="extend">@extend</span> is when you don't have complete control over your markup, such as when you are constrained by certain CMS and cannot add additional classes to your markup.</p>
 		<h2 id="mobile-first"><a name="section-sass-mobilefirst"></a> Mobile first</h2>
 		<p>In almost all cases, sites should be built mobile first, specifiying the mobile styles as your base CSS and adding media queries to progressively enhance the experience for larger width devices and screens.</p>
 		<p>The problem with doing this is that Internet Explorer versions 8 and earlier doesn't support media queries and so will only see our mobile styles. There is a way of solving this problem using JavaScript, but the preferred solution is to solve the problem using Sass.</p>
