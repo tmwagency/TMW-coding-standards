@@ -18,12 +18,12 @@ to build upon for this document, and in some sections been directly quoted.
 	ii. [Readability vs Compression](#section-intro-readability)
 2. [Browser Support](#section-browsersupport)
 3. [Base Templates and frameworks](#section-frameworks)
-4. [Markup](#section-html)
-	i. [HTML5](#section-html-html5)
-	ii. [General Markup Guidelines](#section-html-general)
-	iii. [Quoting Attributes](#section-html-attributes)
-	iv. [Character Encoding](#section-html-encoding)
-	v. [Accessibility](#section-html-accessibility)
+4. [Markup](#section-markup)
+	i. [HTML5](#section-markup-html5)
+	ii. [General Markup Guidelines](#section-markup-general)
+	iii. [Quoting Attributes](#section-markup-attributes)
+	iv. [Character Encoding](#section-markup-encoding)
+	v. [Accessibility](#section-markup-accessibility)
 5. [CSS](#section-css)
 	i. [General CSS Principles](#section-css-general)
 	ii. [Syntax and formatting](#section-css-formatting)
@@ -35,20 +35,28 @@ to build upon for this document, and in some sections been directly quoted.
 	viii. [Specificity, IDs and classes](#section-css-specificity)
 	ix. [Conditional Stylesheets](#section-css-conditionalstylesheets)
 	x. [!important](#section-css-important)
-	xi. [Images](#section-css-images)
-	xii. [Debugging](#section-css-debugging)
-	xiii. [Preprocessors](#section-css-preprocessors)
-	xiv. [Tools](#section-css-tools)
-6. [JavaScript](#section-js)
-	i. [Libraries](#section-js-libraries)
-	ii. [Plugins](#section-js-plugins)
-	iii. [General JavaScript Principles](#section-js-general)
-	iv. [Formatting and code sensibility](#section-js-formatting)
-	v. [jQuery](#section-js-jquery)
-	vi. [Debugging](#section-js-debugging)
-	vii. [Resources](#section-js-resources)
-7. [Accessibility](#section-accessibility)
-8. [Performance and Optimisation](#section-performance)
+	xi. [Magic Numbers and absolutes](#section-css-magicnumbers)
+	xii. [Images](#section-css-images)
+	xiii. [Debugging](#section-css-debugging)
+	xiv. [Preprocessors](#section-css-preprocessors)
+	xv. [Responsive Design](#section-css-rwd)
+	xvi. [Tools](#section-css-tools)
+6. [Sass](#section-sass)
+	i. [General Sass Principles](#section-sass-general)
+	ii. [Nesting](#section-sass-nesting)
+	iii. [@extend](#section-sass-extend)
+	iv. [Mobile First](#section-sass-mobilefirst)
+7. [JavaScript](#section-js)
+	i. [General JavaScript Principles](#section-js-general)
+	ii. [Formatting and code sensibility](#section-js-formatting)
+	iii. [Libraries](#section-js-libraries)
+	iv. [Plugins](#section-js-plugins)
+	iv. [Dependency Management](#section-js-dependencies)
+	vi. [jQuery Best Practices](#section-js-jquery)
+	vii. [Debugging](#section-js-debugging)
+	viii. [Resources](#section-js-resources)
+8. [Accessibility](#section-accessibility)
+9. [Performance and Optimisation](#section-performance)
 
 
 ***
@@ -63,11 +71,13 @@ to build upon for this document, and in some sections been directly quoted.
 - Gracefully degrade functionality when not present (e.g GPS, box-shadow, forms etc).
 
 
-##<a name="section-intro-indentation"></a> Indentation
+<a name="section-intro-indentation"></a> Indentation
+------------------------------------------------
 
 For all languages, indent your code with tabs.  The default tab size should be set as 4.
 
-##<a name="section-intro-readability"></a> Readability vs Compression
+<a name="section-intro-readability"></a> Readability vs Compression
+-------------------------------------------------------------
 
 We encourage readability over file-size when it comes to maintaining existing files. Plenty of white-space is encouraged, along with ASCII art, where appropriate. There is no need for any developer to purposefully compress HTML or CSS, nor obfuscate JavaScript.
 
@@ -98,10 +108,11 @@ Both Kickoff and Kickoff Statix are actively maintained by the Creative Tech tea
 
 ***
 
-<a name="section-html"></a> Markup
+<a name="section-markup"></a> Markup
 ===============================
 
-##<a name="section-html-html5"></a> HTML5
+<a name="section-markup-html5"></a> HTML5
+---------------------------------------
 
 The HTML5 Doctype and HTML5 features will be used on projects when appropriate.
 
@@ -113,7 +124,8 @@ To ensure HTML5 markup compatibility with older browsers, use either:
 We will test our markup against the [W3C validator](http://validator.w3.org/), to ensure that the markup is well formed. 100% valid code is not a goal, but validation certainly helps to write more maintainable sites as well as debugging code. TMW does not guarantee markup is 100% valid, but instead assures the cross-browser experience is consistent.
 
 
-##<a name="section-html-general"></a> General Markup Guidelines
+<a name="section-markup-general"></a> General Markup Guidelines
+---------------------------------------------------------
 
 The following are general guidelines for structuring your HTML markup. Authors are reminded to always use markup which represents the semantics of the content in the document being created.
 
@@ -140,14 +152,16 @@ The following are general guidelines for structuring your HTML markup. Authors a
 
 - Tables **shouldn't ever** be used for page layout.
 
-##<a name="section-html-attributes"></a> Quoting Attributes
+<a name="section-markup-attributes"></a> Quoting Attributes
+----------------------------------------------------
 
 While the HTML5 specification defines quotes around attributes as optional for consistency with attributes that accept whitespace, all attributes should be quoted.
 
 	<a href="mylink.html" title="My Link Title" data-attribute="32">This is my Link</a>
 
 
-##<a name="section-html-encoding"></a> Character Encoding
+<a name="section-markup-encoding"></a> Character Encoding
+-----------------------------------------------------
 
 All markup should be delivered as UTF-8, as it's the most friendly for internationalization. It should be designated in both the HTTP header and the head of the document.
 
@@ -156,7 +170,8 @@ Set the character set using `<meta>` tags:
 	<meta charset="utf-8">
 
 
-##<a name="section-html-accessibility"></a> Accessibility
+<a name="section-markup-accessibility"></a> Accessibility
+-------------------------------------------------
 
 Consider ARIA integration for high accessibility sites.
 
@@ -167,7 +182,8 @@ For our full guidelines on Accessibility, refer to the [Accessibility Guidelines
 <a name="section-css"></a> CSS
 ============================
 
-##<a name="section-css-general"></a> General CSS Principles
+<a name="section-css-general"></a> General CSS Principles
+----------------------------------------------------
 
 - Every time you write inline styles in your markup, a front-end developer somewhere dies - whether it's in a style tag or directly in the markup. Don't do it.
 - Add CSS through external files, minimizing the number of files, if possible. CSS should always be included in the `<head>` of the document.
@@ -175,7 +191,8 @@ For our full guidelines on Accessibility, refer to the [Accessibility Guidelines
 - Ensure markup and style stays separate (some style classes are allowed, e.g imageReplace etc).  Only use style only markup if you absolutely have to (e.g extra wrapping elements); consider `:before` and `:after` CSS pseudo-elements if styles are not 100% necessary.
 
 
-##<a name="section-css-formatting"></a> Syntax and formatting
+<a name="section-css-formatting"></a> Syntax and formatting
+-------------------------------------------------------
 
 - Use multi-line CSS declarations. This helps with version control (diff-ing single line CSS can be a nightmare). Group CSS declarations by type - keeping font related styling together, layout styling together etc - and ordered by relevance, not alphabetized.
 - All CSS rules should have a space after the selector colon and a trailing semi-colon.
@@ -210,7 +227,8 @@ For our full guidelines on Accessibility, refer to the [Accessibility Guidelines
 		}
 
 
-##<a name="section-css-indenting"></a> Indenting
+<a name="section-css-indenting"></a> Indenting
+--------------------------------------------
 
 For each level of markup nesting, indent your CSS to match.  For example:
 
@@ -222,7 +240,8 @@ For each level of markup nesting, indent your CSS to match.  For example:
 			.content p {}
 
 
-##<a name="section-css-ocss"></a> OOCSS
+<a name="section-css-ocss"></a> OOCSS
+-------------------------------------
 
 When building components try and keep a DRY, OO frame of mind.
 
@@ -234,7 +253,9 @@ Read:
 - [The Nav Abstraction](http://csswizardry.com/2011/09/the-nav-abstraction/)
 
 
-##<a name="section-css-typography"></a> Typography
+<a name="section-css-typography"></a> Typography
+---------------------------------------------
+
 
 @font-face should be used for font replacement where possible - ensuring that the font can be safely used in .ttf format on the web in agreement with its licensing agreement.  Where this is an issue, look to use tools such as [TypeKit](https://typekit.com/) or [Fontdeck](http://fontdeck.com/)
 
@@ -245,7 +266,8 @@ JavaScript replacement techniques should be avoided where possible, as they are 
 Always define [supporting font-size classes](http://csswizardry.com/2012/02/pragmatic-practical-font-sizing-in-css/), in conjunction with headers to avoid restyling header sizes.
 
 
-##<a name="section-css-reset"></a> Reset vs Normalisation
+<a name="section-css-reset"></a> Reset vs Normalisation
+---------------------------------------------------
 
 There is no set preference to using a reset CSS file or using a normalisation technique, as long as consistency is applied throughout projects.
 
@@ -256,7 +278,8 @@ For normalisation, the excellent [normalise.css](http://necolas.github.com/norma
 Kickoff, which is used as a base for all of TMW‘s projects, chooses to implement normalisation by default, rather than a CSS reset.
 
 
-##<a name="section-css-comments"></a> Comments
+<a name="section-css-comments"></a> Comments
+---------------------------------------------
 
 Comment as much as you can as often as you can. Where it might be useful, include a commented out piece of markup which can help put the current CSS into context.
 
@@ -269,7 +292,8 @@ e.g.
 		width: 34.042553% /* 320 / 940 */
 
 
-##<a name="section-css-specificity"></a> Specificity, IDs and classes
+<a name="section-css-specificity"></a> Specificity, IDs and classes
+----------------------------------------------------------
 
 CSS is designed to cascade, so make sure you understand [cascading and selector specificity](http://www.stuffandnonsense.co.uk/archives/css_specificity_wars.html).  It will enable you to write very terse and effective code.
 
@@ -280,7 +304,8 @@ Name classes and IDs by the nature of **what it is** rather than what it looks l
 **Read:** [Shoot to kill – CSS Selector Intent](http://csswizardry.com/2012/07/shoot-to-kill-css-selector-intent/)
 
 
-##<a name="section-css-conditionalstylesheets"></a> Conditional Stylesheets
+<a name="section-css-conditionalstylesheets"></a> Conditional Stylesheets
+------------------------------------------------------------------
 
 Stylesheets specific for Internet Explorer can, by and large, be totally avoided. The only time an IE stylesheet may be required is to circumvent blatant lack of support (e.g. media queries, PNG fixes).
 
@@ -291,14 +316,16 @@ When building mobile first responsive websites, it is necessary to generate a se
 If IE specific styling is required, look to utilise Paul Irish's [body/html class conditional for IE* targeting](http://paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/).
 
 
-##<a name="section-css-important"></a> !important
+<a name="section-css-important"></a> !important
+---------------------------------------------
 
 It is okay to use `!important` on helper classes only. To add `!important` pre-emptively is fine, e.g. .error { color:red!important }, as you know you will always want this rule to take precedence.
 
 Using `!important` reactively, e.g. to get yourself out of nasty specificity situations, is not advised. Rework your CSS and try to combat these issues by refactoring your selectors. Keeping selectors short and avoiding IDs will help you out here massively.
 
 
-##<a name="section-css-magicnumbers"></a> Magic numbers and absolutes
+<a name="section-css-magicnumbers"></a> Magic numbers and absolutes
+-----------------------------------------------------------------
 
 A magic number is a number which is used because ‘it just works’. These are bad because they rarely work for any real reason and are not usually very futureproof or flexible/forgiving. They tend to fix symptoms and not problems.
 
@@ -311,7 +338,8 @@ Every time you hard code a number think twice; if you can avoid it by using keyw
 Every hard-coded measurement you set is a commitment you might not necessarily want to keep.
 
 
-##<a name="section-css-images"></a> Images
+<a name="section-css-images"></a> Images
+---------------------------------------
 
 Image names should use dashes and be named so that their use is clear i.e. icon-facebook-blue.png
 
@@ -324,14 +352,16 @@ Alternatively, converting your images to data URI's and including them in the CS
 At TMW, we currently use a combination of [GruntIcon](https://github.com/filamentgroup/grunticon), and data-uris, but this is reviewed on a project-by-project basis.
 
 
-##<a name="section-css-debugging"></a> Debugging
+<a name="section-css-debugging"></a> Debugging
+----------------------------------------------
 
 If you run into a CSS problem, take code away before you start adding more in a bid to fix it. The problem will exist in the CSS that is already written, more CSS isn't necessarily the right answer!
 
 It can be tempting to put overflow:hidden; on something to hide the effects of a layout quirk, but overflow was probably never the problem; fix the problem, not its symptoms.
 
 
-##<a name="section-css-preprocessors"></a> Preprocessors
+<a name="section-css-preprocessors"></a> Preprocessors
+---------------------------------------------------
 
 Use of a preprocessor should be used on a per project basis where it is deemed necessary.
 
@@ -342,7 +372,8 @@ Be sure to know the ins-and-outs of excellent vanilla CSS and where a preprocess
 For more specific guidelines on using Sass, read the [Sass section of these guidelines](#section-sass).
 
 
-##<a name="section-css-rwd"></a> Responsive Design
+<a name="section-css-rwd"></a> Responsive Design
+----------------------------------------------
 
 All work is considered in a responsive, mobile first, way unless the project dictates otherwise.
 
@@ -353,7 +384,8 @@ It is recommended to read Ethan Marcotte's excellent book, [Responsive Web Desig
 It is out of the scope of this document to go through the specifics of developing responsively, but some suggested techniques that we use during development are talked about in [Sass – Mobile First](#section-sass-mobilefirst).
 
 
-##<a name="section-css-tools"></a> Tools
+<a name="section-css-tools"></a> Tools
+------------------------------------
 
 - [Procssor](http://procssor.com/) - formats untidy CSS into indented loveliness
 
@@ -362,12 +394,15 @@ It is out of the scope of this document to go through the specifics of developin
 <a name="section-sass"></a> Sass
 ======================================
 
-##<a name="section-sass-general"></a> General Sass Principles
+<a name="section-sass-general"></a> General Sass Principles
+------------------------------------------------------
 
 - Be sure to know the ins-and-outs of excellent vanilla CSS and where a preprocessor can aid that, not hinder or undo it. Learn the downsides of preprocessors inside-out and then fuse the best aspects of the two with the bad bits of neither.
+- One of the most powerful features of using a preprocessor is simply being able to separate your CSS into a number of different files that are pulled in and combined at compile time.  This makes it easier to make your code more maintainable and better structured than having all of your code in one file.
 
 
-##<a name="section-sass-nesting"></a> Nesting
+<a name="section-sass-nesting"></a> Nesting
+-----------------------------------------
 
 When nesting selectors, try not to nest more than 3 levels deep.  If you find yourself writing deeply nested selectors, it is usually a sign that you should rethink how you have structured your markup or class declarations.
 
@@ -396,9 +431,10 @@ If you were to write this in Sass, it would look more like:
 			a {}
 		}
 
-##<a name="section-sass-extends"></a> @extends
+<a name="section-sass-extend"></a> @extend
+------------------------------------------
 
-Use caution when using the @extends operator.  It can give unexpected results in the compiled CSS when used too liberally and can usually be avoided simply by using classes to extend styling in a more modular fashion.
+Use caution when using the @extend operator.  It can give unexpected results in the compiled CSS when used too liberally and can usually be avoided by using classes to extend styling in a more modular fashion.
 
 For example, rather than writing the following:
 
@@ -419,59 +455,39 @@ Simply add the class to the masthead markup instead:
 
 Doing this will help to keep your styling modular and more reusable.
 
-The most useful use case for @extends is when you don't have complete control over your markup, such as when you are constrained by certain CMS and cannot add additional classes to your markup.
+There are of course times that using @extend can be very useful, but don't use it as a defacto when sensible use of vanilla CSS would be just as simple.
 
 
-##<a name="section-sass-mobilefirst"></a> Mobile first
+<a name="section-sass-mobilefirst"></a> Mobile first
+-----------------------------------------------
 
-In almost all cases, sites should be built mobile first, specifiying the mobile styles as your base CSS and adding media queries to progressively enhance the experience for larger width devices and screens.
+In the majority of cases, sites should be built mobile first, specifiying the mobile styles as your base CSS and adding media queries to progressively enhance the experience for larger width devices and screens.
 
-The problem with doing this is that Internet Explorer versions 8 and earlier doesn't support media queries and so will only see our mobile styles.  There is a way of solving this problem using JavaScript, but the preferred solution is to solve the problem using Sass.
+The problem with doing this is that Internet Explorer version 8 and earlier doesn't support media queries and so ignore them and render just the mobile styles.  There is a way of solving this problem using JavaScript, but our preferred solution is to solve the problem using Sass.
 
-[Jake Archibald wrote about this solution](http://jakearchibald.github.io/sass-ie/) which uses Sass to generate two stylesheets, a fixed width stylesheet which is conditionally loaded for IE8 and below, and a separate stylesheet for all other browsers.  This solution is built into our front-end framework Kickoff.
-
-***
-
-<a name="section-grunt"></a> Task Management – Grunt
-====================================================
-
-Section being written
+[Jake Archibald wrote about this solution](http://jakearchibald.github.io/sass-ie/) which uses Sass to generate two stylesheets – a fixed width stylesheet, which is conditionally loaded for IE8 and below, and a separate stylesheet for all other browsers.  This solution is also built into Kickoff, TMW's front-end framework.
 
 ***
 
 <a name="section-js"></a> Javascript
 ===================================
 
-##<a name="section-js-libraries"></a> Libraries
+<a name="section-js-general"></a> General JavaScript Principles
+------------------------------------------------------
 
-We develop all of our new applications using a mix of native JavaScript and [jQuery](http://jquery.com/).  Always use the Google CDN to include jQuery as well as a local fallback should that not be available.
-
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-	<script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.2.min.js"><\/script>')</script>
-
-
-##<a name="section-js-plugins"></a> Plugins
-
-We maintain an active wiki detailing the JavaScript and jQuery plugins we use for common use cases such as form validation, carousels and lightboxes.  Any additions to this must first be added to the experimental list and then approved by at least 2 Members of the team.
-
-All plugins should be added into the projects plugins.js and never included as a separate JS file, as it increases the number of page requests (page requests === bad).
-
-
-##<a name="section-js-general"></a> General JavaScript Principles
-
-- 99% of JavaScript should be included in external JavaScript files and included at the END of the BODY tag.  The only exception to this rule is [Modernizr](http://modernizr.com/) which can be included at the end of the `<head>`.
+- 99% of JavaScript should be included in external JavaScript files and included at the END of the BODY tag.  One exception to this rule is [Modernizr](http://modernizr.com/) which should be included at the end of the `<head>`.
 - Feature detect, don't browser detect.  [Modernizr](http://modernizr.com/) is a great resource for doing this.
-- Name variables and functions logically and in camelCase.
+- Name variables and functions logically and in camelCase.  Sensible names that are long are preferred to short names that make no sense.
+- Try to write functions to follow the principle that they should do one thing and do it well.  If you can see that a function is becoming more complex, abstract it out into multiple functions – it will become more readable, reusable and will make more sense to someone unfamiliar to the code.
 - Prefix jQuery collection variables with the dollar (`$`) character e.g `$headerChildren`
 - Class declarations should start with a capital letter.
-- Constants or configuration variables should be at the start of a class.
-- Global variables should be written in all caps - although avoid polluting the global namespace where possible
+- Constants or configuration variables should be at the start of a class and written in CAPS.
 - Build using the object literal pattern e.g.
 
-		var BASENAME = {
-			init: function(){
-				this.$sections = $('#container section'),
-				this.$additionalTextNodes = $('section a > span')
+		var SiteSetup = {
+			init: function () {
+				this.$sections = $('#container section');
+				this.$additionalTextNodes = $('section a > span');
 				this.createMarkup();
 			},
 			createMarkup: function(){
@@ -479,18 +495,17 @@ All plugins should be added into the projects plugins.js and never included as a
 				&additionalTextNodes.css({
 					position: 'absolute',
 					top: this.style.left - $sections[0].style.width / 2
-				})
+				});
 			}
 		}
-		BASENAME.init();
+		SiteSetup.init();
 
 - Structure and formatting should follow the example below:
 
 		$(function(){
-			//globals here, in CAPS
 
 			var SiteSetup = {
-				animationSpeed: 100,
+				ANIMATION_SPEED: 100,
 
 				init : function () {
 					//fire off all other classes
@@ -516,7 +531,8 @@ All plugins should be added into the projects plugins.js and never included as a
 [The Essentials of Writing High Quality JavaScript](http://net.tutsplus.com/tutorials/javascript-ajax/the-essentials-of-writing-high-quality-javascript/)
 
 
-##<a name="section-js-formatting"></a> Formatting and code sensibility
+<a name="section-js-formatting"></a> Formatting and code sensibility
+-------------------------------------------------------------
 
 - Separate operators/comparators with spacing
 
@@ -569,53 +585,88 @@ All plugins should be added into the projects plugins.js and never included as a
 			alert('w00t!')
 		}
 
-##<a name="section-js-jquery"></a> jQuery
+
+
+<a name="section-js-libraries"></a> Libraries
+-----------------------------------------
+
+When considering how we use JavaScript on a project, no two projects are usually the same in how it uses libraries, although the style and inclusion of the libraries is kept as consistent as possible.
+
+Many of our projects are developed using a mix of native JavaScript and [jQuery](http://jquery.com/), although the use of jQuery or simply a native solution is considered at the start of each project.
+
+Kickoff, the TMW front-end framework, includes jQuery as part of it's default build, but this can be easily removed, especially if using the Yeoman generator for Kickoff, which will ask if you would like to include it as part of your project setup.
+
+
+<a name="section-js-plugins"></a> Plugins
+---------------------------------------
+
+We maintain a number of JavaScript classes and plugins we have built and extended across a number of projects.  These can be found on [our github repo](https://github.com/tmwagency/js-classes-and-plugins), the readme of which details our actively maintained projects.
+
+We also maintain an active wiki detailing a number of JavaScript and jQuery plugins we use for common use cases such as form validation, carousels and lightboxes.  Any additions to this must first be added to the experimental list and then approved by at least 2 Members of the team.
+
+
+<a name="section-js-dependencies"></a> Dependency Management
+------------------------------------------------------------
+
+Dependency management and build processing in JavaScript is an area that has progressed rapidly over the last 12-18 months.  Our preferred method of handling dependencies in JavaScript is to use [Browserify](browserify.org), which uses a CommonJS syntax to manage your dependencies.
+
+Although it is encouraged to use browserify on future projects, it is down to the lead developer on each project to choose the solution that best fits their needs.
+
+
+<a name="section-js-jquery"></a> jQuery Best Practices
+-------------------------------------------------
 
 - Always cache DOM selection if you plan to re-use data
-- Use efficient query selectors, write for many browsers, don't assume document.querySelector()
-- Avoid using $.each for repeated or performance critical functionality, and instead use a for or reverse while loop (especially for large objects)
-- Use `on()` and `off()` handlers for events.  Everything else is now depreciated (live, delegate, bind)
+- Use efficient query selectors. Write for many browsers, don't assume document.querySelector()
+- Avoid using $.each for repeated or performance critical functionality. Instead use a `for` or reverse `while` loop (especially for large objects)
+- Use `on()` and `off()` handlers for events.  Everything else is now deprecated (live, delegate, bind)
 - When using simple html5 attribute data, simply use `$selected.attr('data-foo')` unless working with complex data types (where you can use `$selected.data()`)
 - Try to understand the underlying JavaScript functionality of jQuery methods.  This will help you write much more efficient selectors (watch Paul Irish's talk - [10 Things I Learned from the jQuery Source](http://paulirish.com/2010/10-things-i-learned-from-the-jquery-source/))
 
 
-##<a name="section-js-debugging"></a> Debugging
+<a name="section-js-debugging"></a> Debugging
+--------------------------------------------
 
 Learn how to use your browser tools properly as it will save you hours in debugging.
 
 If you're using `alert()` you're doing it wrong.  Use `console.log()`, or [Paul Irish's lightweight wrapper](http://paulirish.com/2009/log-a-lightweight-wrapper-for-consolelog/)
 
 
-##<a name="section-js-dependencies"></a> Dependency Management
+<a name="section-js-resources"></a> Resources
+-------------------------------------------
 
-Section being written
+### Forms
+- Uniform
 
-##<a name="section-js-resources"></a> Resources
+### Responsive Carousels
+- Flexslider
 
-Section being written
+### Responsive Images
+- Adaptive Image
 
-<!--
-1. Forms:
-	- Uniform
-2. jQuery Tools
-3. Ender.js
-4. Require.js
-5. Browserify
+### Mobile touch
+- SwiftClick
 
 This list will eventually go on a separate wiki detailing more specific plugin information.
--->
+
 ***
 
 <a name="section-accessibility"></a> Accessibility
---------------------------------------
+--------------------------------------------
+
+Markup and code should be written in a way that is inherently accessibile, irrespective of the project being worked on.
+
+When marking up content, ARIA roles are the preferred method of designating the role of sections in our markup when its use may be ambiguous.
 
 For accessibility testing, consider using one of the following:
-
 - [Wave Accessibility tester](http://wave.webaim.org/)
+
 
 ***
 
 <a name="section-performance"></a> Performance and Optimisation
------------------------------------------------------
+------------------------------------------------------------
 
-Section being written
+
+
+
