@@ -14,47 +14,47 @@ to build upon for this document, and in some sections been directly quoted.
 ##Contents
 
 1. [General Guidelines](#section-intro)
- - i. [Indentation](#section-intro-indentation)
- - ii. [Readability vs Compression](#section-intro-readability)
+  1. [Indentation](#section-intro-indentation)
+  2. [Readability vs Compression](#section-intro-readability)
 2. [Browser Support](#section-browsersupport)
 3. [Base Templates and frameworks](#section-frameworks)
 4. [Markup](#section-markup)
-	i. [HTML5](#section-markup-html5)
-	ii. [General Markup Guidelines](#section-markup-general)
-	iii. [Quoting Attributes](#section-markup-attributes)
-	iv. [Character Encoding](#section-markup-encoding)
-	v. [Accessibility](#section-markup-accessibility)
+	1. [HTML5](#section-markup-html5)
+	2. [General Markup Guidelines](#section-markup-general)
+	3. [Quoting Attributes](#section-markup-attributes)
+	4. [Character Encoding](#section-markup-encoding)
+	5. [Accessibility](#section-markup-accessibility)
 5. [CSS](#section-css)
-	i. [General CSS Principles](#section-css-general)
-	ii. [Syntax and formatting](#section-css-formatting)
-	iii. [Indenting](#section-css-indenting)
-	iv. [OOCSS](#section-css-ocss)
-	v. [Typography](#section-css-typography)
-	vi. [Reset vs Normalisation](#section-css-reset)
-	vii. [Comments](#section-css-comments)
-	viii. [Specificity, IDs and classes](#section-css-specificity)
-	ix. [Conditional Stylesheets](#section-css-conditionalstylesheets)
-	x. [!important](#section-css-important)
-	xi. [Magic Numbers and absolutes](#section-css-magicnumbers)
-	xii. [Images](#section-css-images)
-	xiii. [Debugging](#section-css-debugging)
-	xiv. [Preprocessors](#section-css-preprocessors)
-	xv. [Responsive Design](#section-css-rwd)
-	xvi. [Tools](#section-css-tools)
+	1. [General CSS Principles](#section-css-general)
+	2. [Syntax and formatting](#section-css-formatting)
+	3. [Indenting](#section-css-indenting)
+	4. [OOCSS](#section-css-ocss)
+	5. [Typography](#section-css-typography)
+	6. [Reset vs Normalisation](#section-css-reset)
+	7. [Comments](#section-css-comments)
+	8. [Specificity, IDs and classes](#section-css-specificity)
+	9. [Conditional Stylesheets](#section-css-conditionalstylesheets)
+	10. [!important](#section-css-important)
+	11. [Magic Numbers and absolutes](#section-css-magicnumbers)
+	12. [Images](#section-css-images)
+	13. [Debugging](#section-css-debugging)
+	14. [Preprocessors](#section-css-preprocessors)
+	15. [Responsive Design](#section-css-rwd)
+	16. [Tools](#section-css-tools)
 6. [Sass](#section-sass)
-	i. [General Sass Principles](#section-sass-general)
-	ii. [Nesting](#section-sass-nesting)
-	iii. [@extend](#section-sass-extend)
-	iv. [Mobile First](#section-sass-mobilefirst)
+	1. [General Sass Principles](#section-sass-general)
+	2. [Nesting](#section-sass-nesting)
+	3. [@extend](#section-sass-extend)
+	4. [Mobile First](#section-sass-mobilefirst)
 7. [JavaScript](#section-js)
-	i. [General JavaScript Principles](#section-js-general)
-	ii. [Formatting and code sensibility](#section-js-formatting)
-	iii. [Libraries](#section-js-libraries)
-	iv. [Plugins](#section-js-plugins)
-	iv. [Dependency Management](#section-js-dependencies)
-	vi. [jQuery Best Practices](#section-js-jquery)
-	vii. [Debugging](#section-js-debugging)
-	viii. [Resources](#section-js-resources)
+	1. [General JavaScript Principles](#section-js-general)
+	2. [Formatting and code sensibility](#section-js-formatting)
+	3. [Libraries](#section-js-libraries)
+	4. [Plugins](#section-js-plugins)
+	5. [Dependency Management](#section-js-dependencies)
+	6. [jQuery Best Practices](#section-js-jquery)
+	7. [Debugging](#section-js-debugging)
+	8. [Resources](#section-js-resources)
 8. [Accessibility](#section-accessibility)
 9. [Performance and Optimisation](#section-performance)
 
@@ -133,13 +133,14 @@ The following are general guidelines for structuring your HTML markup. Authors a
 - Items in list form should always be housed in a `<ul>`, `<ol>`, or `<dl>`, never a set of `<div>`s or `<p>`s.
 - Place an HTML comment around DIV tags that contain a larger amount of markup to indicate the element you're closing. It will help when there is a lot of nesting and indentation. For example:
 
-		<!-- Start of .contentWrap -->
-		<div class="contentWrap">
+```html
+<!-- Start of .contentWrap -->
+<div class="contentWrap">
 
-			//some markup goes here
+	//some markup goes here
 
-		</div> <!-- End of .contentWrap -->
-
+</div> <!-- End of .contentWrap -->
+```
 
 - Make use of `<thead>`, `<tbody>`, and `<th>` tags (and `Scope` attribute) when appropriate.
 - Make use of `<dl>` (definition lists) and `<blockquote>`, when appropriate.
@@ -157,8 +158,9 @@ The following are general guidelines for structuring your HTML markup. Authors a
 
 While the HTML5 specification defines quotes around attributes as optional for consistency with attributes that accept whitespace, all attributes should be quoted.
 
-	<a href="mylink.html" title="My Link Title" data-attribute="32">This is my Link</a>
-
+```html
+<a href="mylink.html" title="My Link Title" data-attribute="32">This is my Link</a>
+```
 
 <a name="section-markup-encoding"></a> Character Encoding
 -----------------------------------------------------
@@ -167,8 +169,9 @@ All markup should be delivered as UTF-8, as it's the most friendly for internati
 
 Set the character set using `<meta>` tags:
 
-	<meta charset="utf-8">
-
+```html
+<meta charset="utf-8">
+```
 
 <a name="section-markup-accessibility"></a> Accessibility
 -------------------------------------------------
@@ -202,43 +205,48 @@ For our full guidelines on Accessibility, refer to the [Accessibility Guidelines
 - Multi-attribute selectors should go on separate lines.
 - Don't over qualify class or ID selectors.  Leads to specificity issues further down the line.
 
-		// Bad
-		div.content {}
+```css
+// Bad
+div.content {}
 
-		// Good
-		.content {}
+// Good
+.content {}
+```
+
 - 0 requires no units
 
-		// Good
-		.bar,
-		.foo[href="bar"] {
-			position: absolute;
-			top: 0;
-			right: 0;
-			bottom: 0;
-			left: 0;
+```css
+// Good
+.bar,
+.foo[href="bar"] {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
 
-			padding: 10px 0 0 0;
-			margin: 10px 0;
+	padding: 10px 0 0 0;
+	margin: 10px 0;
 
-			background: red;
-			border-radius: 10px;
-			-moz-border-radius: 10px;
-		}
-
+	background: red;
+	border-radius: 10px;
+	-moz-border-radius: 10px;
+}
+```
 
 <a name="section-css-indenting"></a> Indenting
 --------------------------------------------
 
 For each level of markup nesting, indent your CSS to match.  For example:
 
-		nav {}
-			nav li {}
-				nav li a {}
+```css
+nav {}
+	nav li {}
+		nav li a {}
 
-		.content {}
-			.content p {}
-
+.content {}
+	.content p {}
+```
 
 <a name="section-css-ocss"></a> OOCSS
 -------------------------------------
@@ -289,8 +297,9 @@ This is especially true for responsive layouts where percentage width/margin's h
 
 e.g.
 
-		width: 34.042553% /* 320 / 940 */
-
+```css
+width: 34.042553% /* 320 / 940 */
+```
 
 <a name="section-css-specificity"></a> Specificity, IDs and classes
 ----------------------------------------------------------
@@ -408,28 +417,34 @@ When nesting selectors, try not to nest more than 3 levels deep.  If you find yo
 
 Nest only when it would actually be necessary in vanilla CSS, e.g.
 
-		.header {}
-		.header .site-nav {}
-		.header .site-nav li {}
-		.header .site-nav li a {}
+```css
+.header {}
+.header .site-nav {}
+.header .site-nav li {}
+.header .site-nav li a {}
+```
 
 Would be wholly unnecessary in normal CSS, so the following would be bad Sass:
 
-		.header {
-			.site-nav {
-				li {
-					a {}
-				}
-			}
+```css
+.header {
+	.site-nav {
+		li {
+			a {}
 		}
+	}
+}
+```
 
 If you were to write this in Sass, it would look more like:
 
-		.header {}
-		.site-nav {
-			li {}
-			a {}
-		}
+```css
+.header {}
+.site-nav {
+	li {}
+	a {}
+}
+```
 
 <a name="section-sass-extend"></a> @extend
 ------------------------------------------
@@ -438,20 +453,24 @@ Use caution when using the @extend operator.  It can give unexpected results in 
 
 For example, rather than writing the following:
 
-		.section-centered {
-			display: block;
-			margin: 0 auto;
-		}
+```css
+.section-centered {
+	display: block;
+	margin: 0 auto;
+}
 
-		.masthead {
-			@extends .section-centered;
-		}
+.masthead {
+	@extends .section-centered;
+}
+```
 
 Simply add the class to the masthead markup instead:
 
-		<div class="masthead section-centered">
-			…
-		</div>
+```html
+<div class="masthead section-centered">
+	…
+</div>
+```
 
 Doing this will help to keep your styling modular and more reusable.
 
@@ -484,46 +503,50 @@ The problem with doing this is that Internet Explorer version 8 and earlier does
 - Constants or configuration variables should be at the start of a class and written in CAPS.
 - Build using the object literal pattern e.g.
 
-		var SiteSetup = {
-			init: function () {
-				this.$sections = $('#container section');
-				this.$additionalTextNodes = $('section a > span');
-				this.createMarkup();
-			},
-			createMarkup: function(){
-				var $additionalTextNodes = this.$sections.remove();
-				&additionalTextNodes.css({
-					position: 'absolute',
-					top: this.style.left - $sections[0].style.width / 2
-				});
-			}
-		}
-		SiteSetup.init();
+```js
+var SiteSetup = {
+	init: function () {
+		this.$sections = $('#container section');
+		this.$additionalTextNodes = $('section a > span');
+		this.createMarkup();
+	},
+	createMarkup: function(){
+		var $additionalTextNodes = this.$sections.remove();
+		&additionalTextNodes.css({
+			position: 'absolute',
+			top: this.style.left - $sections[0].style.width / 2
+		});
+	}
+}
+SiteSetup.init();
+```
 
 - Structure and formatting should follow the example below:
 
-		$(function(){
+```js
+$(function(){
 
-			var SiteSetup = {
-				ANIMATION_SPEED: 100,
+	var SiteSetup = {
+		ANIMATION_SPEED: 100,
 
-				init : function () {
-					//fire off all other classes
-					if (LightBox.$lightbox.length > 0) {
-						LightBox.init();
-					}
-				}
-			},
-			LightBox = {
-				$lightbox: $('.lightbox'),
+		init : function () {
+			//fire off all other classes
+			if (LightBox.$lightbox.length > 0) {
+				LightBox.init();
+			}
+		}
+	},
+	LightBox = {
+		$lightbox: $('.lightbox'),
 
-				init : function () {},
-				open : function () {},
-				close : function () {}
-			};
+		init : function () {},
+		open : function () {},
+		close : function () {}
+	};
 
-			SiteSetup.init();
-		});
+	SiteSetup.init();
+});
+```
 
 - Documentation should follow [NaturalDocs](http://www.naturaldocs.org/documenting.html) structure.  As with all code, document as frequently as you can - the more detail the better.  At the very least, document each function you create.
 
@@ -536,39 +559,43 @@ The problem with doing this is that Internet Explorer version 8 and earlier does
 
 - Separate operators/comparators with spacing
 
-		// Good
-		if (foo && foo.bar && typeof foo.bar === 'object') {
-			foo.bar.call();
-		}
+```js
+// Good
+if (foo && foo.bar && typeof foo.bar === 'object') {
+	foo.bar.call();
+}
 
-		// Terrible
-		if(foo&&foo.bar&&typeof foo.bar==='object'){
-			foo.bar.call();
-		}
+// Terrible
+if(foo&&foo.bar&&typeof foo.bar==='object'){
+	foo.bar.call();
+}
+```
 
 - Use braces for logic evaluations.  If evaluation execution is simple, keep non-braced logic on a single line e.g:
 
-		// Good
-		if (i < 10) return true;
+```js
+// Good
+if (i < 10) return true;
 
-		// Good
-		if(foo && foo.bar && foo.bar > 10) {
-			foo.baz = foo.bar - 100 * 2.7 + 'rad'
-		}
+// Good
+if(foo && foo.bar && foo.bar > 10) {
+	foo.baz = foo.bar - 100 * 2.7 + 'rad'
+}
 
-		// Bad
-		if(foo && foo.bar && foo.bar > 10)
-			foo.baz = foo.bar - 100 * 2.7 + 'rad'
+// Bad
+if(foo && foo.bar && foo.bar > 10)
+	foo.baz = foo.bar - 100 * 2.7 + 'rad'
 
-		// Bad
-		if(i < 10)
-			return true;
+// Bad
+if(i < 10)
+	return true;
 
-		// Bad
-		if(i < 10)
-		{
-			return true;
-		}
+// Bad
+if(i < 10)
+{
+	return true;
+}
+```
 
 - Remap this to self when passing context
 - Always use `===` as a comparator (unless you really need flexible evaluations e.g comparison to null)
@@ -580,11 +607,12 @@ The problem with doing this is that Internet Explorer version 8 and earlier does
 	- use `$.extend` if you are using jQuery to extend a passed in object while providing defaults
 - If possible, avoid using bitwise operations unless they really help. If used, document them with comments
 
-		// inverting bits to ease comparison to -1
-		if (~foo.bar.indexOf('leetness')){
-			alert('w00t!')
-		}
-
+```js
+// inverting bits to ease comparison to -1
+if (~foo.bar.indexOf('leetness')){
+	alert('w00t!')
+}
+```
 
 
 <a name="section-js-libraries"></a> Libraries
@@ -666,7 +694,6 @@ For accessibility testing, consider using one of the following:
 
 <a name="section-performance"></a> Performance and Optimisation
 ------------------------------------------------------------
-
 
 
 
